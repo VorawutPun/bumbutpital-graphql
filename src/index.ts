@@ -4,16 +4,17 @@ import cors from "cors";
 import { createConnection } from "typeorm";
 import { schema } from "./Schema";
 import { Users } from "./Entities/Users";
+import { Content } from "./Entities/Content";
 
 const main = async () => {
   await createConnection({
     type: "mysql",
-    database: "bumbutpital",
+    database: "graphql",
     username: "root",
-    password: "iFlame",
+    password: "",
     logging: true,
-    synchronize: true,
-    entities: [Users],
+    synchronize: false,
+    entities: [Content],
   });
 
   const app = express();
