@@ -5,6 +5,7 @@ import { createConnection } from "typeorm";
 import { schema } from "./Schema";
 import { Users } from "./Entities/Users";
 import { Content } from "./Entities/Content";
+import { Hospital } from "./Entities/Hospital";
 
 const main = async () => {
   await createConnection({
@@ -14,7 +15,7 @@ const main = async () => {
     password: "",
     logging: true,
     synchronize: false,
-    entities: [Content],
+    entities: [Content,Users,Hospital],
   });
 
   const app = express();
