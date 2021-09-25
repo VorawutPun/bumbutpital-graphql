@@ -6,6 +6,8 @@ import { schema } from "./Schema";
 import { Users } from "./Entities/Users";
 import { Content } from "./Entities/Content";
 import { Hospital } from "./Entities/Hospital";
+import { promotioninhospitaldetail_card } from "./Entities/promotioninhospitaldetail_card";
+import { Video } from "./Entities/Video";
 
 const main = async () => {
   await createConnection({
@@ -15,7 +17,7 @@ const main = async () => {
     password: "",
     logging: true,
     synchronize: false,
-    entities: [Content,Users,Hospital],
+    entities: [Content,Users,Hospital,promotioninhospitaldetail_card,Video],
   });
 
   const app = express();
