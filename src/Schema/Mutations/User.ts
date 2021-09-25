@@ -5,41 +5,6 @@ import { Users } from "../../Entities/Users";
 import { sign } from "jsonwebtoken";
 import { compare, hash } from "bcryptjs";
 
-// import {
-//   Resolver,
-//   Query,
-//   Mutation,
-//   Arg,
-//   ObjectType,
-//   Field
-// } from "type-graphql";
-// import * as bcrypt from 'bcryptjs'
-// import * as jwt from 'jsonwebtoken'
-
-export const CREATE_USER = {
-  type: UserType,
-  args: {
-    name: { type: GraphQLString },
-    surname: { type: GraphQLString },
-    username: { type: GraphQLString },
-    password: { type: GraphQLString },
-    email: { type: GraphQLString },
-    phoneNumber: { type: GraphQLString },
-  },
-  async resolve(parent: any, args: any) {
-    const { username, password, name, surname, email, phoneNumber } = args;
-    await Users.insert({
-      username,
-      password,
-      name,
-      surname,
-      email,
-      phoneNumber,
-    });
-    return args;
-  },
-};
-
 export const UPDATE_PASSWORD = {
   type: MessageType,
   args: {
@@ -128,19 +93,3 @@ export const USER_REGISTER = {
     return args;
   },
 };
-
-// export const USER_PROFILE = {
-//   type: UserType,
-//   args: {
-//     id: { type: GraphQLID },
-//   },
-//   async resolve(context: any, args: any) {
-//     const { id } = args;
-//     const user = await Users.getByUserKey(id);
-//     if (user == undefined) {
-//       context.res.status(404);
-//       throw new Error('Invalid user');
-//     }
-//     return user;
-//   }, 
-// }

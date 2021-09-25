@@ -20,7 +20,6 @@ export class promotioninhospitaldetail_card extends BaseEntity {
   @Column()
   hospitalDetail!: string;
 
-
   @Column()
   couponCode!: string;
 

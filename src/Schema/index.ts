@@ -1,6 +1,6 @@
 import { buildSchema, GraphQLObjectType, GraphQLSchema } from "graphql";
 import { GET_ALL_USERS } from "./Queries/User";
-import { CREATE_USER, DELETE_USER, UPDATE_PASSWORD, USER_LOGIN, /* USER_PROFILE ,*/ USER_REGISTER } from "./Mutations/User";
+import { DELETE_USER, UPDATE_PASSWORD, USER_LOGIN, /* USER_PROFILE ,*/ USER_REGISTER } from "./Mutations/User";
 import { GET_ALL_Content } from "./Queries/Content";
 import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
@@ -24,7 +24,6 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
-    createUser: CREATE_USER,
     deleteUser: DELETE_USER,
     updatePassword: UPDATE_PASSWORD,
     createContent: CREATE_CONTENT,
