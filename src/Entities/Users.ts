@@ -22,4 +22,10 @@ export class Users extends BaseEntity {
 
   @Column()
   phoneNumber!: string;
+
+  // static async getByUserKey(ukey: string): Promise<Users | undefined> {
+  //   const db = new Database<Users>(Users);
+  //   return await db.get({ ukey });
+  // }
 }
+

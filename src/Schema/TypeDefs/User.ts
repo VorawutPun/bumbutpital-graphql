@@ -1,4 +1,6 @@
 import { GraphQLObjectType, GraphQLID, GraphQLString } from "graphql";
+import { verify } from "jsonwebtoken";
+import { MiddlewareFn } from "type-graphql";
 
 export const UserType = new GraphQLObjectType({
   name: "User",

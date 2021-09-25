@@ -1,6 +1,6 @@
-import { GraphQLObjectType, GraphQLSchema } from "graphql";
+import { buildSchema, GraphQLObjectType, GraphQLSchema } from "graphql";
 import { GET_ALL_USERS } from "./Queries/User";
-import { CREATE_USER, DELETE_USER, UPDATE_PASSWORD } from "./Mutations/User";
+import { CREATE_USER, DELETE_USER, UPDATE_PASSWORD, USER_LOGIN, /* USER_PROFILE ,*/ USER_REGISTER } from "./Mutations/User";
 import { GET_ALL_Content } from "./Queries/Content";
 import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
@@ -28,6 +28,8 @@ const Mutation = new GraphQLObjectType({
     deleteUser: DELETE_USER,
     updatePassword: UPDATE_PASSWORD,
     createContent: CREATE_CONTENT,
+    userLogin: USER_LOGIN,
+    userRegister: USER_REGISTER,
     deleteContent: DELETE_CONTENT,
     createHospital: CREATE_Hospital,
     deleteHospital: DELETE_Hospital,
@@ -37,6 +39,7 @@ const Mutation = new GraphQLObjectType({
     createVideo: CREATE_Video
   },
 });
+
 
 export const schema = new GraphQLSchema({
   query: RootQuery,
