@@ -27,13 +27,13 @@ export const CREATE_Hospital = {
 };
 
 
-export const DELETE_CONTENT = {
+export const DELETE_Hospital = {
   type: MessageType,
   args: {
-    contentID: { type: GraphQLID },
+    HospitalID: { type: GraphQLID },
   },
   async resolve(parent: any, args: any) {
-    const id = args.contentID;
+    const id = args.HospitalID;
     await Hospital.delete(id);
 
     return { successful: true, message: "DELETE WORKED" };
