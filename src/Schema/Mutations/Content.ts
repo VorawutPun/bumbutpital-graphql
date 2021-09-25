@@ -29,7 +29,6 @@ export const CREATE_CONTENT = {
   },
 };
 
-
 export const DELETE_CONTENT = {
   type: MessageType,
   args: {
