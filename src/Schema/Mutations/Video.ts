@@ -13,10 +13,20 @@ export const CREATE_Video = {
     createAt: { type: GraphQLString },
     videoUrl: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any) {
-    const { staffID, appropiatePHQSeverity, title, pictureUrl, createAt, videoUrl } = args;
+  async resolve(parent: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const {
+      staffID,
+      appropiatePHQSeverity,
+      title,
+      pictureUrl,
+      createAt,
+      videoUrl,
+    } = args;
     await Video.insert({
-        staffID,
+      staffID,
       appropiatePHQSeverity,
       title,
       pictureUrl,
@@ -32,7 +42,10 @@ export const DELETE_Video = {
   args: {
     id: { type: GraphQLID },
   },
-  async resolve(parent: any, args: any) {
+  async resolve(parent: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const id = args.id;
     await Video.delete(id);
 

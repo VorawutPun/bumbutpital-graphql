@@ -17,21 +17,21 @@ const main = async () => {
     res: Response,
     next: NextFunction
   ) => {
-      const token = (req.headers as any).authorization.replace("Bearer","").replace(" ", "");
-      console.log(token, "token");
+  
+    const token = (req.headers as any)?.authorization?.split(" ")[1];
 
-      if (!token) {
-        throw new Error("Not authenticated");
-      }
-
-      try {
-        const decoded = verify(token, "MySecretKey");
-        console.log(decoded);
-      } catch (err) {
-        console.log(err);
-        throw new Error("Not authenticated");
-      }
+    if (!token) {
+      (req as any).isAuth = false;
       return next();
+    }
+
+    try {
+      const decoded = verify(token, "MySecretKey");
+      (req as any).isAuth = true;
+    } catch (err) {
+      (req as any).isAuth = false;
+    }
+    return next();
   };
 
   const app: Express = express();
@@ -40,17 +40,17 @@ const main = async () => {
     type: "mysql",
     database: "bumbutpital",
     username: "root",
-    password: "iFlame",
+    password: "bumbutpital",
     logging: true,
     synchronize: false,
-    entities: [Content,Users,Hospital,promotioninhospitaldetail_card,Video],
+    entities: [Content, Users, Hospital, promotioninhospitaldetail_card, Video],
   });
 
   var root = {
     user: function (args: any, request: any) {
-      console.log(request)
-      return request.ip;
-    }
+      console.log(request);
+      return "1234";
+    },
   };
 
   app.use(cors());

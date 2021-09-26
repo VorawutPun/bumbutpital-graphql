@@ -14,7 +14,10 @@ export const CREATE_promotioninhospitaldetail_card = {
     couponCode: { type: GraphQLString },
     Url: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any) {
+  async resolve(parent: any, args: any,context:any) {
+        if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const { hospitalId, userId, createAt, title, hospitalDetail, couponCode , Url } = args;
     await promotioninhospitaldetail_card.insert({
         hospitalId,
@@ -36,7 +39,10 @@ export const DELETE_promotioninhospitaldetail_card = {
   args: {
     id: { type: GraphQLID },
   },
-  async resolve(parent: any, args: any) {
+  async resolve(parent: any, args: any,context:any) {
+        if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const id = args.id;
     await promotioninhospitaldetail_card.delete(id);
 

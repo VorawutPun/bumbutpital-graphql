@@ -9,21 +9,24 @@ export const CREATE_CONTENT = {
     contentID: { type: GraphQLID },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
-    updateTime: { type: GraphQLString },
     pictureUrl: { type: GraphQLString },
-    createAt: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any) {
-    const { contentID, title, description, updateTime, pictureUrl, createAt, appropiatePHQSeverity } = args;
+  async resolve(parent: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const { contentID, title, description, pictureUrl, appropiatePHQSeverity } =
+      args;
+    const now = Date();
     await Content.insert({
-        contentID,
-        title,
-        description,
-        updateTime,
-        pictureUrl,
-        createAt,
-        appropiatePHQSeverity,
+      contentID,
+      title,
+      description,
+      pictureUrl,
+      appropiatePHQSeverity,
+      updateTime: now,
+      createAt: now,
     });
     return args;
   },
@@ -34,7 +37,10 @@ export const DELETE_CONTENT = {
   args: {
     contentID: { type: GraphQLID },
   },
-  async resolve(parent: any, args: any) {
+  async resolve(parent: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const id = args.contentID;
     await Content.delete(id);
 

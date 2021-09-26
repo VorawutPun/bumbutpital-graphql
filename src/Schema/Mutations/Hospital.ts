@@ -11,21 +11,23 @@ export const CREATE_Hospital = {
     hospitalName: { type: GraphQLString },
     hospitalDescription: { type: GraphQLString },
     imageUrl: { type: GraphQLString },
- 
   },
-  async resolve(parent: any, args: any) {
-    const { hospitalID, staffID, hospitalName, hospitalDescription, imageUrl } = args;
+  async resolve(parent: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const { hospitalID, staffID, hospitalName, hospitalDescription, imageUrl } =
+      args;
     await Hospital.insert({
-        hospitalID,
-        staffID,
-        hospitalName,
-        hospitalDescription,
-        imageUrl
+      hospitalID,
+      staffID,
+      hospitalName,
+      hospitalDescription,
+      imageUrl,
     });
     return args;
   },
 };
-
 
 export const DELETE_Hospital = {
   type: MessageType,

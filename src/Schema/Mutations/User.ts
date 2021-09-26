@@ -12,7 +12,10 @@ export const UPDATE_PASSWORD = {
     oldPassword: { type: GraphQLString },
     newPassword: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any) {
+  async resolve(parent: any, args: any,context:any) {
+        if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const { username, oldPassword, newPassword } = args;
     const user = await Users.findOne({ username: username });
 
@@ -36,7 +39,10 @@ export const DELETE_USER = {
   args: {
     id: { type: GraphQLID },
   },
-  async resolve(parent: any, args: any) {
+  async resolve(parent: any, args: any,context:any) {
+        if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const id = args.id;
     await Users.delete(id);
 
@@ -55,7 +61,7 @@ export const USER_LOGIN = {
     const user = await Users.findOne({ username: username });
 
     if (!user) {
-      throw new Error("USERNAME DOESNT EXIST");
+      throw new Error("Username does not exist!");
     }
     const verify = await compare(password, user.password);
 
