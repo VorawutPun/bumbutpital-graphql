@@ -4,7 +4,10 @@ import { Video } from "../../Entities/Video";
 
 export const GET_ALL_Video = {
   type: new GraphQLList(VideoType),
-  resolve() {
+  resolve(_: any, __: any, context: any) {
+     if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
     return Video.find();
   },
 };

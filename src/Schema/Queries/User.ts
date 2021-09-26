@@ -4,7 +4,10 @@ import { Users } from "../../Entities/Users";
 
 export const GET_ALL_USERS = {
   type: new GraphQLList(UserType),
-  resolve() {
+  resolve(_: any, __: any, context: any) {
+     if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
     return Users.find();
   },
 };

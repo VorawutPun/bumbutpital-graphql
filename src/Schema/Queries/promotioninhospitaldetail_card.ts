@@ -4,7 +4,10 @@ import {  promotioninhospitaldetail_card} from "../../Entities/promotioninhospit
 
 export const GET_ALL_promotioninhospitaldetail_card = {
   type: new GraphQLList(promotioninhospitaldetail_cardType),
-  resolve() {
+  resolve(_: any, __: any, context: any) {
+     if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
     return promotioninhospitaldetail_card.find();
   },
 };
