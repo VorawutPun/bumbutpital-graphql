@@ -40,7 +40,7 @@ const main = async () => {
     type: "mysql",
     database: "bumbutpital",
     username: "root",
-    password: "bumbutpital",
+    password: "iFlame",
     logging: true,
     synchronize: false,
     entities: [Content, Users, Hospital, promotioninhospitaldetail_card, Video],

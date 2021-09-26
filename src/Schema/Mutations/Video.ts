@@ -10,7 +10,6 @@ export const CREATE_Video = {
     appropiatePHQSeverity: { type: GraphQLString },
     title: { type: GraphQLString },
     pictureUrl: { type: GraphQLString },
-    createAt: { type: GraphQLString },
     videoUrl: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
@@ -22,15 +21,15 @@ export const CREATE_Video = {
       appropiatePHQSeverity,
       title,
       pictureUrl,
-      createAt,
       videoUrl,
     } = args;
+    const now = Date();
     await Video.insert({
       staffID,
       appropiatePHQSeverity,
       title,
       pictureUrl,
-      createAt,
+      createAt: now,
       videoUrl,
     });
     return args;
