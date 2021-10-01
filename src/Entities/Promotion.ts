@@ -1,27 +1,29 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Content extends BaseEntity {
+export class Promotion extends BaseEntity {
   @PrimaryGeneratedColumn()
-  contentID!: number;
+  promotionId!: number;
 
   @Column()
-  description!: string;
+  hospitalId!: string;
 
   @Column()
-  updateTime!: string;
-
-  @Column()
-  pictureUrl!: string;
+  userId!: string;
 
   @Column()
   createAt!: string;
 
   @Column()
-  appropiatePHQSeverity!: string;
-
-  @Column()
   title!: string;
 
+  @Column()
+  hospitalDetail!: string;
+
+  @Column()
+  couponCode!: string;
+
+  @Column()
+  Url!: string;
 
 }
