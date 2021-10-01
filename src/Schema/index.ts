@@ -9,6 +9,8 @@ import { CREATE_PROMOTION, DELETE_PROMOTION } from "./Mutations/Promotion";
 import { GET_ALL_PROMOTION } from "./Queries/Promotion";
 import { GET_ALL_Video } from "./Queries/Video";
 import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
+import { GET_ALL_FORUM } from "./Queries/Forum";
+import { CREATE_FORUM } from "./Mutations/Forum";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -17,7 +19,8 @@ const RootQuery = new GraphQLObjectType({
     getAllContent: GET_ALL_Content,
     getAllHospital: GET_ALL_Hospital,
     getAllPromotion: GET_ALL_PROMOTION,
-    getAllVideo: GET_ALL_Video
+    getAllVideo: GET_ALL_Video,
+    getAllForum: GET_ALL_FORUM
   },
 });
 
@@ -35,7 +38,8 @@ const Mutation = new GraphQLObjectType({
     createPromotion: CREATE_PROMOTION,
     deletePromotion: DELETE_PROMOTION,
     deleteVideo: DELETE_Video,
-    createVideo: CREATE_Video
+    createVideo: CREATE_Video,
+    createForum: CREATE_FORUM
   },
 });
 
