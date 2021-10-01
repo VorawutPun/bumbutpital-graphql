@@ -5,8 +5,8 @@ import { GET_ALL_Content } from "./Queries/Content";
 import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
 import { GET_ALL_Hospital } from "./Queries/Hospital";
-import { CREATE_promotioninhospitaldetail_card, DELETE_promotioninhospitaldetail_card } from "./Mutations/promotioninhospitaldetail_card";
-import { GET_ALL_promotioninhospitaldetail_card } from "./Queries/promotioninhospitaldetail_card";
+import { CREATE_PROMOTION, DELETE_PROMOTION } from "./Mutations/Promotion";
+import { GET_ALL_PROMOTION } from "./Queries/Promotion";
 import { GET_ALL_Video } from "./Queries/Video";
 import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
 
@@ -16,7 +16,7 @@ const RootQuery = new GraphQLObjectType({
     getAllUsers: GET_ALL_USERS,
     getAllContent: GET_ALL_Content,
     getAllHospital: GET_ALL_Hospital,
-    getAllpromotioninhospitaldetail_card: GET_ALL_promotioninhospitaldetail_card,
+    getAllPromotion: GET_ALL_PROMOTION,
     getAllVideo: GET_ALL_Video
   },
 });
@@ -32,8 +32,8 @@ const Mutation = new GraphQLObjectType({
     deleteContent: DELETE_CONTENT,
     createHospital: CREATE_Hospital,
     deleteHospital: DELETE_Hospital,
-    createpromotioninhospitaldetail_card: CREATE_promotioninhospitaldetail_card,
-    deletepromotioninhospitaldetail_card: DELETE_promotioninhospitaldetail_card,
+    createPromotion: CREATE_PROMOTION,
+    deletePromotion: DELETE_PROMOTION,
     deleteVideo: DELETE_Video,
     createVideo: CREATE_Video
   },

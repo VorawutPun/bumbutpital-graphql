@@ -8,7 +8,7 @@ import { Users } from "./Entities/Users";
 import { Content } from "./Entities/Content";
 import { verify } from "jsonwebtoken";
 import { Hospital } from "./Entities/Hospital";
-import { promotioninhospitaldetail_card } from "./Entities/promotioninhospitaldetail_card";
+import { Promotion } from "./Entities/Promotion";
 import { Video } from "./Entities/Video";
 
 const main = async () => {
@@ -42,10 +42,10 @@ const main = async () => {
     database:"bumbutpital",
     username: "root",
     // password: "root_punbewtae",
-    password:"bumbutpital",
+    password:"iFlame",
     logging: true,
     synchronize: true,
-    entities: [Content, Users, Hospital, promotioninhospitaldetail_card, Video],
+    entities: [Content, Users, Hospital, Promotion, Video],
   });
 
 

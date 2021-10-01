@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLID, GraphQLString } from "graphql";
 
-export const promotioninhospitaldetail_cardType = new GraphQLObjectType({
-  name: "promotioninhospitaldetail_card",
+export const PromotionType = new GraphQLObjectType({
+  name: "promotion",
   fields: () => ({
     promotionId: { type: GraphQLID },
     hospitalId: { type: GraphQLString },
