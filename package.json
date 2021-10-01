@@ -5,7 +5,7 @@
   "author": "vorawut2000",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/index.ts",
+    "start": "NODE_PATH=./dist node dist/index.js",
     "dev": "nodemon ./src/index.ts",
     "build": "tsc -p ."
   },

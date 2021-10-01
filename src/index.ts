@@ -38,20 +38,16 @@ const main = async () => {
 
   await createConnection({
     type: "mysql",
-    database: "bumbutpital",
+    // database: "bumbut_database",
+    database:"bumbutpital",
     username: "root",
-    password: "iFlame",
+    // password: "root_punbewtae",
+    password:"bumbutpital",
     logging: true,
-    synchronize: false,
+    synchronize: true,
     entities: [Content, Users, Hospital, promotioninhospitaldetail_card, Video],
   });
 
-  var root = {
-    user: function (args: any, request: any) {
-      console.log(request);
-      return "1234";
-    },
-  };
 
   app.use(cors());
   app.use(loggingMiddleware as any)
@@ -60,7 +56,6 @@ const main = async () => {
     "/graphql",
     graphqlHTTP({
       schema,
-      rootValue: root,
       graphiql: true,
     })
   );
