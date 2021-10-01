@@ -10,7 +10,7 @@ import { verify } from "jsonwebtoken";
 import { Hospital } from "./Entities/Hospital";
 import { Promotion } from "./Entities/Promotion";
 import { Video } from "./Entities/Video";
-
+import { Forum } from "./Entities/Forum";
 const main = async () => {
   const loggingMiddleware = (
     req: Request,
@@ -42,10 +42,10 @@ const main = async () => {
     database:"bumbutpital",
     username: "root",
     // password: "root_punbewtae",
-    password:"iFlame",
+    password:"bumbutpital",
     logging: true,
     synchronize: true,
-    entities: [Content, Users, Hospital, Promotion, Video],
+    entities: [Content, Users, Hospital, Promotion, Video, Forum],
   });
 
 
