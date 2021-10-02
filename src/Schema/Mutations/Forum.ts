@@ -1,6 +1,5 @@
 import { ForumType } from './../TypeDefs/Forum';
 import { GraphQLID, GraphQLString } from "graphql";
-import { ForumType } from "../TypeDefs/Forum";
 import { Forum } from "../../Entities/Forum";
 import { MessageType } from "../TypeDefs/Messages";
 
