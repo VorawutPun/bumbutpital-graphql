@@ -37,6 +37,7 @@ const main = async () => {
   const app: Express = express();
 
   await createConnection({
+    // host:"bumbut_database",
     type: "mysql",
     // database: "bumbut_database",
     database:"bumbutpital",
