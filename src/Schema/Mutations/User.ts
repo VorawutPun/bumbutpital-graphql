@@ -12,8 +12,8 @@ export const UPDATE_PASSWORD = {
     oldPassword: { type: GraphQLString },
     newPassword: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any,context:any) {
-        if (!context.isAuth) {
+  async resolve(parent: any, args: any, context: any) {
+    if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
     const { username, oldPassword, newPassword } = args;
@@ -39,8 +39,8 @@ export const DELETE_USER = {
   args: {
     id: { type: GraphQLID },
   },
-  async resolve(parent: any, args: any,context:any) {
-        if (!context.isAuth) {
+  async resolve(parent: any, args: any, context: any) {
+    if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
     const id = args.id;
@@ -70,10 +70,10 @@ export const USER_LOGIN = {
     }
 
     return {
-      accessToken: sign({ userId: user.id }, "MySecretKey")
+      accessToken: sign({ userId: user.id }, "MySecretKey"),
     };
-  }
-}
+  },
+};
 
 export const USER_REGISTER = {
   type: UserType,

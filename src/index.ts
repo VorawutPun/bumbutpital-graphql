@@ -42,7 +42,7 @@ const main = async () => {
     database:"bumbutpital",
     username: "root",
     // password: "root_punbewtae",
-    password:"bumbutpital",
+    password:"iFlame",
     logging: true,
     synchronize: true,
     entities: [Content, Users, Hospital, Promotion, Video, Forum],
