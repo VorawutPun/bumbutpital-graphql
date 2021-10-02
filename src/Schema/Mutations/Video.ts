@@ -39,13 +39,13 @@ export const CREATE_Video = {
 export const DELETE_Video = {
   type: MessageType,
   args: {
-    id: { type: GraphQLID },
+    videoID: { type: GraphQLID },
   },
   async resolve(parent: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const id = args.id;
+    const id = args.videoID;
     await Video.delete(id);
 
     return { successful: true, message: "DELETE WORKED" };

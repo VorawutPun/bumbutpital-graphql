@@ -10,7 +10,7 @@ import { GET_ALL_PROMOTION } from "./Queries/Promotion";
 import { GET_ALL_Video } from "./Queries/Video";
 import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
 import { GET_ALL_FORUM } from "./Queries/Forum";
-import { CREATE_FORUM } from "./Mutations/Forum";
+import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -39,7 +39,8 @@ const Mutation = new GraphQLObjectType({
     deletePromotion: DELETE_PROMOTION,
     deleteVideo: DELETE_Video,
     createVideo: CREATE_Video,
-    createForum: CREATE_FORUM
+    createForum: CREATE_FORUM,
+    answerForum: ANSWER_FORUM,
   },
 });
 
