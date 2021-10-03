@@ -11,10 +11,10 @@ export class Hospital extends BaseEntity {
   @Column()
   hospitalName!: string;
 
-  @Column()
+  @Column({length:10000})
   hospitalDescription!: string;
 
-  @Column()
+  @Column({length:5000})
   imageUrl!: string;
 
 }

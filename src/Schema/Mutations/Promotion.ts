@@ -6,8 +6,8 @@ import { Promotion } from "../../Entities/Promotion";
 export const CREATE_PROMOTION = {
   type: PromotionType,
   args: {
-    hospitalId: { type: GraphQLString },
-    userId: { type: GraphQLString },
+    hospitalId: { type: GraphQLID },
+    // userId: { type: GraphQLID },
     createAt: { type: GraphQLString },
     title: { type: GraphQLString },
     hospitalDetail: { type: GraphQLString },
@@ -31,7 +31,7 @@ export const CREATE_PROMOTION = {
     const now = Date();
     await Promotion.insert({
       hospitalId,
-      userId,
+      // userId,
       createAt: now,
       title,
       hospitalDetail,
