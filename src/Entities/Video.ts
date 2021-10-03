@@ -11,15 +11,15 @@ export class Video extends BaseEntity {
   @Column()
   appropiatePHQSeverity!: string;
 
-  @Column()
+  @Column({length:10000})
   title!: string;
 
-  @Column()
+  @Column({length:1000})
   pictureUrl!: string;
 
   @Column()
   createAt!: string;
 
-  @Column()
+  @Column({length:500})
   videoUrl!: string;
 }

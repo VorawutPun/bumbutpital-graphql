@@ -5,13 +5,13 @@ export class Content extends BaseEntity {
   @PrimaryGeneratedColumn()
   contentID!: number;
 
-  @Column()
+  @Column({length:10000})
   description!: string;
 
   @Column()
   updateTime!: string;
 
-  @Column()
+  @Column({length:5000})
   pictureUrl!: string;
 
   @Column()
