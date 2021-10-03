@@ -14,10 +14,10 @@ export class Promotion extends BaseEntity {
   @Column()
   createAt!: string;
 
-  @Column()
+  @Column({length:10000})
   title!: string;
 
-  @Column()
+  @Column({length:5000})
   hospitalDetail!: string;
 
   @Column()
@@ -25,5 +25,8 @@ export class Promotion extends BaseEntity {
 
   @Column()
   Url!: string;
+
+  @Column()
+  expiredDate!:String;
 
 }
