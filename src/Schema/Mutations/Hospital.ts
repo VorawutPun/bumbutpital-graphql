@@ -6,7 +6,6 @@ import { Hospital } from "../../Entities/Hospital";
 export const CREATE_Hospital = {
   type: HospitalType,
   args: {
-    hospitalID: { type: GraphQLID },
     staffID: { type: GraphQLString },
     hospitalName: { type: GraphQLString },
     hospitalDescription: { type: GraphQLString },
@@ -16,10 +15,9 @@ export const CREATE_Hospital = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const { hospitalID, staffID, hospitalName, hospitalDescription, imageUrl } =
+    const { staffID, hospitalName, hospitalDescription, imageUrl } =
       args;
     await Hospital.insert({
-      hospitalID,
       staffID,
       hospitalName,
       hospitalDescription,
@@ -32,7 +30,7 @@ export const CREATE_Hospital = {
 export const DELETE_Hospital = {
   type: MessageType,
   args: {
-    HospitalID: { type: GraphQLID },
+    hospitalID: { type: GraphQLID },
   },
   async resolve(parent: any, args: any) {
     const id = args.HospitalID;

@@ -34,7 +34,7 @@ export const CREATE_FORUM = {
 export const ANSWER_FORUM = {
   type: MessageType,
   args: {
-    forumID: { type: GraphQLString },
+    forumID: { type: GraphQLID },
     adminAnswer: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
