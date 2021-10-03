@@ -14,9 +14,9 @@ export const CREATE_FORUM = {
     answer: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const { staffID, userID, title, description, answer } = args;
     const now = Date();
     await Forum.insert({
@@ -38,9 +38,9 @@ export const ANSWER_FORUM = {
     adminAnswer: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const { forumID, adminAnswer } = args;
     const forum = await Forum.findOne({ forumID: forumID });
 

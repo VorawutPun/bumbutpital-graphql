@@ -6,14 +6,13 @@ import { Promotion } from "../../Entities/Promotion";
 export const CREATE_PROMOTION = {
   type: PromotionType,
   args: {
-    hospitalId: { type: GraphQLID },
-    // userId: { type: GraphQLID },
+    hospitalId: { type: GraphQLString },
+    userId: { type: GraphQLString },
     createAt: { type: GraphQLString },
     title: { type: GraphQLString },
     hospitalDetail: { type: GraphQLString },
     couponCode: { type: GraphQLString },
     Url: { type: GraphQLString },
-    expiredDate:{ type: GraphQLString}
   },
   async resolve(parent: any, args: any, context: any) {
     if (!context.isAuth) {
@@ -21,23 +20,21 @@ export const CREATE_PROMOTION = {
     }
     const {
       hospitalId,
-      // userId,
+      userId,
       title,
       hospitalDetail,
       couponCode,
       Url,
-      expiredDate,
     } = args;
     const now = Date();
     await Promotion.insert({
       hospitalId,
-      // userId,
+      userId,
       createAt: now,
       title,
       hospitalDetail,
       couponCode,
       Url,
-      expiredDate
     });
     return args;
   },
@@ -46,13 +43,13 @@ export const CREATE_PROMOTION = {
 export const DELETE_PROMOTION = {
   type: MessageType,
   args: {
-    promotionId: { type: GraphQLID },
+    id: { type: GraphQLID },
   },
   async resolve(parent: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const id = args.promotionId;
+    const id = args.id;
     await Promotion.delete(id);
 
     return { successful: true, message: "DELETE WORKED" };

@@ -5,7 +5,7 @@ export const ForumType = new GraphQLObjectType({
   fields: () => ({
     forumID: { type: GraphQLID },
     staffID: {type: GraphQLID},
-    userID:{ type: GraphQLID },
+    userID:{ type: GraphQLString },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
     createAt: { type: GraphQLString },
