@@ -5,7 +5,7 @@ export const PromotionType = new GraphQLObjectType({
   fields: () => ({
     promotionId: { type: GraphQLID },
     hospitalId: { type: GraphQLString },
-    userId: { type: GraphQLString },
+    // userId: { type: GraphQLString },
     createAt: { type: GraphQLString },
     title: { type: GraphQLString },
     hospitalDetail: { type: GraphQLString },

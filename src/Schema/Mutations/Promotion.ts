@@ -21,7 +21,7 @@ export const CREATE_PROMOTION = {
     }
     const {
       hospitalId,
-      userId,
+      // userId,
       title,
       hospitalDetail,
       couponCode,
