@@ -11,12 +11,13 @@ export const CREATE_CONTENT = {
     description: { type: GraphQLString },
     pictureUrl: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
+    contenttype: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    if (!context.isAuth) {
-      throw new Error("Unauthenticated");
-    }
-    const { contentID, title, description, pictureUrl, appropiatePHQSeverity } =
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
+    const { contentID, title, description, pictureUrl, appropiatePHQSeverity ,contenttype} =
       args;
     const now = Date();
     await Content.insert({
@@ -27,6 +28,7 @@ export const CREATE_CONTENT = {
       appropiatePHQSeverity,
       updateTime: now,
       createAt: now,
+      contenttype
     });
     return args;
   },

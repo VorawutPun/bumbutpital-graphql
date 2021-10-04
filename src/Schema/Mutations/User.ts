@@ -103,25 +103,16 @@ export const USER_REGISTER = {
 export const ADD_PHQSCORE = {
   type: MessageType,
   args: {
-    id: { type: GraphQLID },
     appropiatePHQSeverity: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    if (!context.isAuth) {
-      throw new Error("Unauthenticated");
-    }
-    const { id, appropiatePHQSeverity } = args;
-    /* const user = await Users.findOne({ id: id }); */
-    const user = context.id;
-
-    if (!user) {
-      throw new Error("No User");
-    }
-    if (user) {
-      await Users.update({ id: user }, { appropiatePHQSeverity: appropiatePHQSeverity });
-      return { successful: true, message: "ANSWER" };
-    } else {
-      throw new Error();
-    }
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
+    const { appropiatePHQSeverity } = args;
+    // const user = await Users.findOne({ id: id }); 
+    // const user = context.id;
+    await Users.update({ id: context.userId }, { appropiatePHQSeverity: appropiatePHQSeverity });
+    return { successful: true, message: "ANSWER" };
   },
 };

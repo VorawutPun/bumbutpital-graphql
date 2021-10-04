@@ -11,3 +11,13 @@ export const GET_ALL_USERS = {
     return Users.find();
   },
 };
+
+export const GET_CURENT_USER = {
+  type: new GraphQLList(UserType),
+  resolve(_: any, __: any, context: any) {
+     if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+    return Users.find({where:{id:context.userId}});
+  },
+};
