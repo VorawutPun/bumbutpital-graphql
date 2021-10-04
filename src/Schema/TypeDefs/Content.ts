@@ -10,5 +10,6 @@ export const ContentType = new GraphQLObjectType({
     pictureUrl: { type: GraphQLString },
     createAt: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
+    contenttype: { type: GraphQLString },
   }),
 });

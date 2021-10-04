@@ -22,4 +22,7 @@ export class Video extends BaseEntity {
 
   @Column({length:1000})
   videoUrl!: string;
+
+  @Column({length:1000})
+  VideoType!: string;
 }

@@ -10,5 +10,6 @@ export const VideoType = new GraphQLObjectType({
     pictureUrl: { type: GraphQLString },
     createAt: { type: GraphQLString },
     videoUrl: { type: GraphQLString },
+    VideoType: { type: GraphQLString },
   }),
 });

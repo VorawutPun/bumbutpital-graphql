@@ -11,17 +11,19 @@ export const CREATE_Video = {
     title: { type: GraphQLString },
     pictureUrl: { type: GraphQLString },
     videoUrl: { type: GraphQLString },
+    VideoType: { type: GraphQLString }
   },
   async resolve(parent: any, args: any, context: any) {
-    if (!context.isAuth) {
-      throw new Error("Unauthenticated");
-    }
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
     const {
       staffID,
       appropiatePHQSeverity,
       title,
       pictureUrl,
       videoUrl,
+      VideoType
     } = args;
     const now = Date();
     await Video.insert({
@@ -31,6 +33,7 @@ export const CREATE_Video = {
       pictureUrl,
       createAt: now,
       videoUrl,
+      VideoType
     });
     return args;
   },
