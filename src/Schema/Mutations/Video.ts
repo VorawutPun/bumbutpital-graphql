@@ -11,7 +11,7 @@ export const CREATE_Video = {
     title: { type: GraphQLString },
     pictureUrl: { type: GraphQLString },
     videoUrl: { type: GraphQLString },
-    VideoType: { type: GraphQLString }
+    videoType: { type: GraphQLString }
   },
   async resolve(parent: any, args: any, context: any) {
     // if (!context.isAuth) {
@@ -23,7 +23,7 @@ export const CREATE_Video = {
       title,
       pictureUrl,
       videoUrl,
-      VideoType
+      videoType
     } = args;
     const now = Date();
     await Video.insert({
@@ -33,7 +33,7 @@ export const CREATE_Video = {
       pictureUrl,
       createAt: now,
       videoUrl,
-      VideoType
+      videoType
     });
     return args;
   },
