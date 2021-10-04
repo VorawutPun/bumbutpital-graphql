@@ -20,6 +20,6 @@ export class Video extends BaseEntity {
   @Column()
   createAt!: string;
 
-  @Column({length:500})
+  @Column({length:1000})
   videoUrl!: string;
 }

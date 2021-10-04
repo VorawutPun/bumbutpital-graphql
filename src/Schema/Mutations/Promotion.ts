@@ -13,6 +13,7 @@ export const CREATE_PROMOTION = {
     hospitalDetail: { type: GraphQLString },
     couponCode: { type: GraphQLString },
     Url: { type: GraphQLString },
+    expiredDate:{ type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
     if (!context.isAuth) {
@@ -25,6 +26,7 @@ export const CREATE_PROMOTION = {
       hospitalDetail,
       couponCode,
       Url,
+      expiredDate
     } = args;
     const now = Date();
     await Promotion.insert({
@@ -35,6 +37,7 @@ export const CREATE_PROMOTION = {
       hospitalDetail,
       couponCode,
       Url,
+      expiredDate
     });
     return args;
   },

@@ -27,7 +27,9 @@ const main = async () => {
 
     try {
       const decoded = verify(token, "MySecretKey");
+      console.log(decoded);
       (req as any).isAuth = true;
+      (req as any).userId = (decoded as any).userId;
     } catch (err) {
       (req as any).isAuth = false;
     }
@@ -43,7 +45,7 @@ const main = async () => {
     database:"bumbutpital",
     username: "root",
     // password: "root_punbewtae",
-    password:"iFlame",
+    password:"bumbutpital",
     logging: true,
     synchronize: true,
     entities: [Content, Users, Hospital, Promotion, Video, Forum],

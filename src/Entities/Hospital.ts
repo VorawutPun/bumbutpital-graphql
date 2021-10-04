@@ -6,7 +6,7 @@ export class Hospital extends BaseEntity {
   hospitalID!: number;
 
   @Column()
-  staffID!: string;
+  staffID!: number;
 
   @Column()
   hospitalName!: string;

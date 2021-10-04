@@ -6,8 +6,6 @@ import { MessageType } from "../TypeDefs/Messages";
 export const CREATE_FORUM = {
   type: ForumType,
   args: {
-    staffID: { type: GraphQLID },
-    userID: { type: GraphQLID },
     title: { type: GraphQLString },
     description: { type: GraphQLString },
     createAt: { type: GraphQLString },
@@ -17,11 +15,10 @@ export const CREATE_FORUM = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const { staffID, userID, title, description, answer } = args;
+    const { title, description, answer } = args;
     const now = Date();
     await Forum.insert({
-      staffID,
-      userID,
+      userID:context.userId,
       title,
       description,
       answer,
@@ -34,7 +31,7 @@ export const CREATE_FORUM = {
 export const ANSWER_FORUM = {
   type: MessageType,
   args: {
-    forumID: { type: GraphQLID },
+    forumID: { type: GraphQLString },
     adminAnswer: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {

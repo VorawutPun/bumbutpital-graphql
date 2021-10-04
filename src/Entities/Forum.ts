@@ -3,13 +3,13 @@ import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Forum extends BaseEntity {
   @PrimaryGeneratedColumn()
-  forumID!: number;
+  forumID!: string;
 
   @Column()
-  userID!:number;
-  
-  @Column()
-  staffID!:number;
+  userID!:string;
+
+  @Column({nullable:true})
+  staffID!:string;
 
   @Column()
   title!: string;
@@ -20,7 +20,7 @@ export class Forum extends BaseEntity {
   @Column()
   createAt!: string;
 
-  @Column()
+  @Column({nullable:true})
   answer!: string;
 
 
