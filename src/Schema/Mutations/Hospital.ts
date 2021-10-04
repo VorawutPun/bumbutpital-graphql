@@ -33,7 +33,7 @@ export const DELETE_Hospital = {
     hospitalID: { type: GraphQLID },
   },
   async resolve(parent: any, args: any) {
-    const id = args.HospitalID;
+    const id = args.hospitalID;
     await Hospital.delete(id);
 
     return { successful: true, message: "DELETE WORKED" };

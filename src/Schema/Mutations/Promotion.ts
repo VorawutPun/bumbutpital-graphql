@@ -46,13 +46,13 @@ export const CREATE_PROMOTION = {
 export const DELETE_PROMOTION = {
   type: MessageType,
   args: {
-    id: { type: GraphQLID },
+    promotionId: { type: GraphQLID },
   },
   async resolve(parent: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const id = args.id;
+    const id = args.promotionId;
     await Promotion.delete(id);
 
     return { successful: true, message: "DELETE WORKED" };
