@@ -5,7 +5,7 @@ export class Forum extends BaseEntity {
   @PrimaryGeneratedColumn()
   forumID!: string;
 
-  @Column()
+  @Column({nullable:true})
   userID!:string;
 
   @Column({nullable:true})
@@ -22,7 +22,5 @@ export class Forum extends BaseEntity {
 
   @Column({nullable:true})
   answer!: string;
-
-
-
+  
 }

@@ -1,6 +1,12 @@
 import { buildSchema, GraphQLObjectType, GraphQLSchema } from "graphql";
 import { GET_ALL_USERS } from "./Queries/User";
-import { DELETE_USER, UPDATE_PASSWORD, USER_LOGIN, /* USER_PROFILE ,*/ USER_REGISTER } from "./Mutations/User";
+import {
+  ADD_PHQSCORE,
+  DELETE_USER,
+  UPDATE_PASSWORD,
+  USER_LOGIN,
+  /* USER_PROFILE ,*/ USER_REGISTER,
+} from "./Mutations/User";
 import { GET_ALL_Content } from "./Queries/Content";
 import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
@@ -20,7 +26,7 @@ const RootQuery = new GraphQLObjectType({
     getAllHospital: GET_ALL_Hospital,
     getAllPromotion: GET_ALL_PROMOTION,
     getAllVideo: GET_ALL_Video,
-    getAllForum: GET_ALL_FORUM
+    getAllForum: GET_ALL_FORUM,
   },
 });
 
@@ -29,9 +35,10 @@ const Mutation = new GraphQLObjectType({
   fields: {
     deleteUser: DELETE_USER,
     updatePassword: UPDATE_PASSWORD,
-    createContent: CREATE_CONTENT,
+    addPHQScore: ADD_PHQSCORE,
     userLogin: USER_LOGIN,
     userRegister: USER_REGISTER,
+    createContent: CREATE_CONTENT,
     deleteContent: DELETE_CONTENT,
     createHospital: CREATE_Hospital,
     deleteHospital: DELETE_Hospital,
@@ -43,7 +50,6 @@ const Mutation = new GraphQLObjectType({
     answerForum: ANSWER_FORUM,
   },
 });
-
 
 export const schema = new GraphQLSchema({
   query: RootQuery,

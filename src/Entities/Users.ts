@@ -22,5 +22,8 @@ export class Users extends BaseEntity {
 
   @Column()
   phoneNumber!: string;
+
+  @Column()
+  appropiatePHQSeverity!: string;
 }
 
