@@ -116,3 +116,42 @@ export const ADD_PHQSCORE = {
     return { successful: true, message: "ANSWER" };
   },
 };
+
+export const EDIT_PROFILE = {
+  type: MessageType,
+  args: {
+    name: { type: GraphQLString },
+    surname: { type: GraphQLString },
+    email: { type: GraphQLString },
+    phoneNumber: { type: GraphQLString },
+  },
+  async resolve(parent: any, args: any, context: any) {
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
+    const {  name , surname , email , phoneNumber} = args;
+    // const user = await Users.findOne({ id: id }); 
+    // const user = context.id;
+    await Users.update({ id: context.userId }, { name : name , surname:surname ,email:email , phoneNumber:phoneNumber } ,);
+    return { successful: true, message: "ANSWER" };
+  },
+};
+
+
+export const PHQ9_PERMISSION = {
+  type: MessageType,
+  args: {
+    phq9permission: { type: GraphQLString },
+    appropiatePHQSeverity:{ type: GraphQLString },
+  },
+  async resolve(parent: any, args: any, context: any) {
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
+    const { phq9permission , appropiatePHQSeverity} = args;
+    // const user = await Users.findOne({ id: id }); 
+    // const user = context.id;
+    await Users.update({ id: context.userId }, { phq9permission: phq9permission , appropiatePHQSeverity:appropiatePHQSeverity });
+    return { successful: true, message: "ANSWER" };
+  },
+};
