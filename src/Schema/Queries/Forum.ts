@@ -1,5 +1,6 @@
 import { GraphQLList } from "graphql";
 import { Forum } from "../../Entities/Forum";
+import { Users } from "../../Entities/Users";
 import { ForumType } from "../TypeDefs/Forum";
 
 export const GET_ALL_FORUM = {
@@ -11,3 +12,4 @@ export const GET_ALL_FORUM = {
     return Forum.find();
   },
 };
+

@@ -3,8 +3,11 @@ import { GET_ALL_USERS, GET_CURENT_USER } from "./Queries/User";
 import {
   ADD_PHQSCORE,
   DELETE_USER,
+  EDIT_PROFILE,
+  PHQ9_PERMISSION,
   UPDATE_PASSWORD,
   USER_LOGIN,
+  
   /* USER_PROFILE ,*/ USER_REGISTER,
 } from "./Mutations/User";
 import { GET_ALL_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH } from "./Queries/Content";
@@ -55,6 +58,8 @@ const Mutation = new GraphQLObjectType({
     createVideo: CREATE_Video,
     createForum: CREATE_FORUM,
     answerForum: ANSWER_FORUM,
+    phq9permission: PHQ9_PERMISSION,
+    editprofile: EDIT_PROFILE
   },
 });
 
