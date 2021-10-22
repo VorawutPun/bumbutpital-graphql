@@ -45,3 +45,54 @@ export const GET_SMART_CONTENT_DEPRESSION = {
     return Content.find({where: {appropiatePHQSeverity:user.appropiatePHQSeverity , contenttype: "Depression"}});
   },
 };
+
+export const GET_SMART_CONTENT_Mild_Depression = {
+  type: new GraphQLList(ContentType),
+ async resolve(_: any, __: any, context: any)  {
+    if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+
+    return Content.find({where: {appropiatePHQSeverity:"Mild Depression" }});
+  },
+};
+export const GET_SMART_CONTENT_Moderate_Depression = {
+  type: new GraphQLList(ContentType),
+ async resolve(_: any, __: any, context: any)  {
+    if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+
+    return Content.find({where: {appropiatePHQSeverity:"Moderate Depression" }});
+  },
+};
+export const GET_SMART_CONTENT_Moderately_severe_Depression = {
+  type: new GraphQLList(ContentType),
+ async resolve(_: any, __: any, context: any)  {
+    if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+
+    return Content.find({where: {appropiatePHQSeverity:"Moderately severe Depression" }});
+  },
+};
+export const GET_SMART_CONTENT_Severe_Depression = {
+  type: new GraphQLList(ContentType),
+ async resolve(_: any, __: any, context: any)  {
+    if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+
+    return Content.find({where: {appropiatePHQSeverity:"Severe Depression" }});
+  },
+};
+export const GET_SMART_CONTENT_Minimal_Depression = {
+  type: new GraphQLList(ContentType),
+ async resolve(_: any, __: any, context: any)  {
+    if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+
+    return Content.find({where: {appropiatePHQSeverity:"Minimal Depression" }});
+  },
+};

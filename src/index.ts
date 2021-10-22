@@ -33,6 +33,7 @@ const main = async () => {
     } catch (err) {
       (req as any).isAuth = false;
     }
+     
     return next();
   };
 
@@ -42,10 +43,10 @@ const main = async () => {
     // host:"bumbut_database",
     type: "mysql",
     // database: "bumbut_database",
-    database:"bumbutpital",
+    database:"graphql",
     username: "root",
     // password: "root_punbewtae",
-    password:"bumbutpital",
+    password:"",
     logging: true,
     synchronize: true,
     entities: [Content, Users, Hospital, Promotion, Video, Forum],

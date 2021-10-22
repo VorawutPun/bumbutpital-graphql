@@ -11,13 +11,13 @@ export class Forum extends BaseEntity {
   @Column({nullable:true})
   staffID!:string;
 
-  @Column()
+  @Column({nullable:true})
   title!: string;
 
-  @Column()
+  @Column({nullable:true})
   description!: string;
 
-  @Column()
+  @Column({nullable:true})
   createAt!: string;
 
   @Column({nullable:true})

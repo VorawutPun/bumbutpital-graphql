@@ -13,3 +13,13 @@ export const GET_ALL_FORUM = {
   },
 };
 
+export const GET_CURENT_FORUM = {
+  type: new GraphQLList(ForumType),
+  resolve(_: any, __: any, context: any) {
+     if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+    return Forum.find({where:{userID:context.userId}});
+  },
+};
+
