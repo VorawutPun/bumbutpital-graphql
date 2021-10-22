@@ -1,5 +1,6 @@
 import { buildSchema, GraphQLObjectType, GraphQLSchema } from "graphql";
 import { GET_ALL_USERS, GET_CURENT_USER } from "./Queries/User";
+import { GET_ALL_STAFF, GET_CURRENT_STAFF } from "./Queries/Staff";
 import {
   ADD_PHQSCORE,
   DELETE_USER,
@@ -20,11 +21,15 @@ import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_V
 import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
 import { GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
 import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
+import { DELETE_STAFF, STAFF_LOGIN, STAFF_REGISTER, UPDATE_STAFF_PASSWORD } from "./Mutations/Staff";
+
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
     getAllUsers: GET_ALL_USERS,
+    getAllStaff: GET_ALL_STAFF,
+    getCurrentStaff:GET_CURRENT_STAFF,
     getAllContent: GET_ALL_CONTENT,
     getAllHospital: GET_ALL_Hospital,
     getAllPromotion: GET_ALL_PROMOTION,
@@ -49,11 +54,16 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+
     deleteUser: DELETE_USER,
     updatePassword: UPDATE_PASSWORD,
-    addPHQScore: ADD_PHQSCORE,
-    userLogin: USER_LOGIN,
     userRegister: USER_REGISTER,
+    userLogin: USER_LOGIN,
+    deleteStaff: DELETE_STAFF,
+    staffRegister: STAFF_REGISTER,
+    staffLogin: STAFF_LOGIN,
+    updateStaffPassword: UPDATE_STAFF_PASSWORD,
+    addPHQScore: ADD_PHQSCORE,
     createContent: CREATE_CONTENT,
     deleteContent: DELETE_CONTENT,
     createHospital: CREATE_Hospital,

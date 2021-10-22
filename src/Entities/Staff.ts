@@ -1,9 +1,9 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Users extends BaseEntity {
+export class Staff extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  Staffid!: number;
 
   @Column()
   username!: string;
@@ -24,9 +24,5 @@ export class Users extends BaseEntity {
   phoneNumber!: string;
 
   @Column({nullable:true})
-  appropiatePHQSeverity!: string;
-
-  @Column({nullable:true})
-  phq9permission!: string;
+  role!:string;
 }
-

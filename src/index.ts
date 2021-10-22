@@ -11,6 +11,7 @@ import { Hospital } from "./Entities/Hospital";
 import { Promotion } from "./Entities/Promotion";
 import { Video } from "./Entities/Video";
 import { Forum } from "./Entities/Forum";
+import { Staff } from "./Entities/Staff";
 const main = async () => {
   const loggingMiddleware = (
     req: Request,
@@ -43,13 +44,13 @@ const main = async () => {
     // host:"bumbut_database",
     type: "mysql",
     // database: "bumbut_database",
-    database:"graphql",
+    database:"bumbutpital",
     username: "root",
     // password: "root_punbewtae",
-    password:"",
+    password:"bumbutpital",
     logging: true,
     synchronize: true,
-    entities: [Content, Users, Hospital, Promotion, Video, Forum],
+    entities: [Content, Users, Hospital, Promotion, Video, Forum,Staff],
   });
 
 

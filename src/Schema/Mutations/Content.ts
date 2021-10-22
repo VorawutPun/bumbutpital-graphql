@@ -14,9 +14,9 @@ export const CREATE_CONTENT = {
     contenttype: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const { contentID, title, description, pictureUrl, appropiatePHQSeverity ,contenttype} =
       args;
     const now = Date();
