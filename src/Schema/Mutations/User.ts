@@ -137,21 +137,22 @@ export const EDIT_PROFILE = {
   },
 };
 
-
-export const PHQ9_PERMISSION = {
+export const PermissionPHQ9 = {
   type: MessageType,
   args: {
-    phq9permission: { type: GraphQLString },
-    appropiatePHQSeverity:{ type: GraphQLString },
+    permissionPHQSeverity: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
-    const { phq9permission , appropiatePHQSeverity} = args;
+    const { permissionPHQSeverity } = args;
     // const user = await Users.findOne({ id: id }); 
     // const user = context.id;
-    await Users.update({ id: context.userId }, { phq9permission: phq9permission , appropiatePHQSeverity:appropiatePHQSeverity });
+    await Users.update({ id: context.userId }, { permissionPHQSeverity: permissionPHQSeverity });
     return { successful: true, message: "ANSWER" };
   },
 };
+
+
+

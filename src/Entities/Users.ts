@@ -27,6 +27,8 @@ export class Users extends BaseEntity {
   appropiatePHQSeverity!: string;
 
   @Column()
-  phq9permission!: string;
+  permissionPHQSeverity!: string;
+
+  
 }
 
