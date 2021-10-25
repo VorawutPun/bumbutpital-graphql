@@ -4,7 +4,9 @@ import {
   ADD_PHQSCORE,
   DELETE_USER,
   EDIT_PROFILE,
-  PHQ9_PERMISSION,
+
+  PermissionPHQ9,
+
   UPDATE_PASSWORD,
   USER_LOGIN,
   
@@ -16,7 +18,7 @@ import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
 import { GET_ALL_Hospital } from "./Queries/Hospital";
 import { CREATE_PROMOTION, DELETE_PROMOTION } from "./Mutations/Promotion";
 import { GET_ALL_PROMOTION } from "./Queries/Promotion";
-import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH } from "./Queries/Video";
+import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH, GET_SMART_VIDEO_Minimal_Depression ,GET_SMART_VIDEO_Mild_Depression, GET_SMART_VIDEO_Moderate_Depression, GET_SMART_VIDEO_Moderately_severe_Depression, GET_SMART_VIDEO_Severe_Depression} from "./Queries/Video";
 import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
 import { GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
 import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
@@ -42,7 +44,13 @@ const RootQuery = new GraphQLObjectType({
     getMildContent:  GET_SMART_CONTENT_Mild_Depression,
     getModerateContent: GET_SMART_CONTENT_Moderate_Depression,
     getModeratelySeverContent: GET_SMART_CONTENT_Moderately_severe_Depression,
-    getSevereContent:GET_SMART_CONTENT_Severe_Depression
+    getSevereContent:GET_SMART_CONTENT_Severe_Depression,
+    getMinimalVideo: GET_SMART_VIDEO_Minimal_Depression,
+    getMildVideo:  GET_SMART_VIDEO_Mild_Depression,
+    getModerateVideo: GET_SMART_VIDEO_Moderate_Depression,
+    getModeratelySeverVideo: GET_SMART_VIDEO_Moderately_severe_Depression,
+    getSevereVideo:GET_SMART_VIDEO_Severe_Depression
+
   },
 });
 
@@ -64,7 +72,8 @@ const Mutation = new GraphQLObjectType({
     createVideo: CREATE_Video,
     createForum: CREATE_FORUM,
     answerForum: ANSWER_FORUM,
-    phq9permission: PHQ9_PERMISSION,
+    permissionphq9:PermissionPHQ9,
+
     editprofile: EDIT_PROFILE
   },
 });
