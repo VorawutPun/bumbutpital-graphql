@@ -137,7 +137,7 @@ export const EDIT_PROFILE = {
   },
 };
 
-export const PermissionPHQ9 = {
+export const PHQ9_PERMISSION = {
   type: MessageType,
   args: {
     permissionPHQSeverity: { type: GraphQLString },

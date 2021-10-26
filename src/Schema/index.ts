@@ -12,7 +12,7 @@ import {
   
   /* USER_PROFILE ,*/ USER_REGISTER,
 } from "./Mutations/User";
-import { GET_ALL_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH, GET_SMART_CONTENT_Mild_Depression, GET_SMART_CONTENT_Minimal_Depression, GET_SMART_CONTENT_Moderately_severe_Depression, GET_SMART_CONTENT_Moderate_Depression, GET_SMART_CONTENT_Severe_Depression } from "./Queries/Content";
+import { GET_ALL_CONTENT, GET_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH, GET_SMART_CONTENT_Mild_Depression, GET_SMART_CONTENT_Minimal_Depression, GET_SMART_CONTENT_Moderately_severe_Depression, GET_SMART_CONTENT_Moderate_Depression, GET_SMART_CONTENT_Severe_Depression } from "./Queries/Content";
 import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
 import { GET_ALL_Hospital } from "./Queries/Hospital";
@@ -28,6 +28,7 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     getAllUsers: GET_ALL_USERS,
     getAllContent: GET_ALL_CONTENT,
+    getContent: GET_CONTENT,
     getAllHospital: GET_ALL_Hospital,
     getAllPromotion: GET_ALL_PROMOTION,
     getAllVideo: GET_ALL_Video,
