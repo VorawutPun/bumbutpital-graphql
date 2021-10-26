@@ -23,10 +23,10 @@ export class Users extends BaseEntity {
   @Column()
   phoneNumber!: string;
 
-  @Column()
+  @Column({nullable:true})
   appropiatePHQSeverity!: string;
 
-  @Column()
+  @Column({nullable:true})
   permissionPHQSeverity!: string;
 
   
