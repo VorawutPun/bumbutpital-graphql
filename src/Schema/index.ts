@@ -15,9 +15,9 @@ import {
 import { GET_ALL_CONTENT, GET_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH, GET_SMART_CONTENT_Mild_Depression, GET_SMART_CONTENT_Minimal_Depression, GET_SMART_CONTENT_Moderately_severe_Depression, GET_SMART_CONTENT_Moderate_Depression, GET_SMART_CONTENT_Severe_Depression } from "./Queries/Content";
 import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
-import { GET_ALL_Hospital } from "./Queries/Hospital";
+import { GET_ALL_Hospital, GET_HOSPITAL } from "./Queries/Hospital";
 import { CREATE_PROMOTION, DELETE_PROMOTION } from "./Mutations/Promotion";
-import { GET_ALL_PROMOTION } from "./Queries/Promotion";
+import { GET_ALL_PROMOTION, GET_PROMOTION } from "./Queries/Promotion";
 import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH, GET_SMART_VIDEO_Minimal_Depression ,GET_SMART_VIDEO_Mild_Depression, GET_SMART_VIDEO_Moderate_Depression, GET_SMART_VIDEO_Moderately_severe_Depression, GET_SMART_VIDEO_Severe_Depression, GET_VIDEO} from "./Queries/Video";
 import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
 import { GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
@@ -31,7 +31,9 @@ const RootQuery = new GraphQLObjectType({
     getAllContent: GET_ALL_CONTENT,
     getContent: GET_CONTENT,
     getAllHospital: GET_ALL_Hospital,
+    getHospital: GET_HOSPITAL,
     getAllPromotion: GET_ALL_PROMOTION,
+    getPromotion: GET_PROMOTION,
     getAllVideo: GET_ALL_Video,
     getVideo: GET_VIDEO,
     getAllForum: GET_ALL_FORUM,
