@@ -12,6 +12,7 @@ export const UserType = new GraphQLObjectType({
     phoneNumber: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
     permissionPHQSeverity: { type: GraphQLString },
+    appropiatePHQSeverityScore: { type: GraphQLString },
   }),
   
 });

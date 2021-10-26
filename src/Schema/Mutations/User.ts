@@ -104,15 +104,16 @@ export const ADD_PHQSCORE = {
   type: MessageType,
   args: {
     appropiatePHQSeverity: { type: GraphQLString },
+    appropiatePHQSeverityScore: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
-    const { appropiatePHQSeverity } = args;
+    const { appropiatePHQSeverity ,appropiatePHQSeverityScore} = args;
     // const user = await Users.findOne({ id: id }); 
     // const user = context.id;
-    await Users.update({ id: context.userId }, { appropiatePHQSeverity: appropiatePHQSeverity });
+    await Users.update({ id: context.userId }, { appropiatePHQSeverity: appropiatePHQSeverity , appropiatePHQSeverityScore: appropiatePHQSeverityScore  });
     return { successful: true, message: "ANSWER" };
   },
 };

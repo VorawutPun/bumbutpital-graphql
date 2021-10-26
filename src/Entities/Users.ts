@@ -26,7 +26,10 @@ export class Users extends BaseEntity {
   @Column({nullable:true})
   appropiatePHQSeverity!: string;
 
-  @Column({nullable:true})
+  @Column()
+  appropiatePHQSeverityScore!: string;
+
+  @Column()
   permissionPHQSeverity!: string;
 
   
