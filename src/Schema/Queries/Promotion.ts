@@ -44,11 +44,19 @@ export const GET_PROMOTIONLOG = {
 
 export const GET_PROMOTION = {
   type: new GraphQLList(PromotionType),
-  resolve(_: any, __: any, context: any) {
-     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+  args: {
+    promotionId: { type: GraphQLID },
+  },
+  async resolve(_: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
     }
-    return Promotion.find();
+    const promotion = await Promotion.findByIds(args.promotionId);
+    if (promotion) {
+      return promotion;
+    } else {
+      throw new Error("Post not found");
+    }
   },
 };
 
