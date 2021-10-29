@@ -2,6 +2,8 @@ import { GraphQLID, GraphQLString } from "graphql";
 import { PromotionType } from "../TypeDefs/Promotion";
 import { MessageType } from "../TypeDefs/Messages";
 import { Promotion } from "../../Entities/Promotion";
+import { PromotionLog } from "../../Entities/PromotionLog";
+import { PromotionLogType } from "../TypeDefs/PromotionLog";
 
 export const CREATE_PROMOTION = {
   type: PromotionType,
@@ -58,3 +60,4 @@ export const DELETE_PROMOTION = {
     return { successful: true, message: "DELETE WORKED" };
   },
 };
+

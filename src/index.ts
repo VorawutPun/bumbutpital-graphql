@@ -11,6 +11,10 @@ import { Hospital } from "./Entities/Hospital";
 import { Promotion } from "./Entities/Promotion";
 import { Video } from "./Entities/Video";
 import { Forum } from "./Entities/Forum";
+import { PromotionLog } from "./Entities/PromotionLog";
+import { KeepPromotion } from "./Schema/Mutations/PromotionLog";
+
+
 const main = async () => {
   const loggingMiddleware = (
     req: Request,
@@ -49,7 +53,7 @@ const main = async () => {
     password:"",
     logging: true,
     synchronize: true,
-    entities: [Content, Users, Hospital, Promotion, Video, Forum],
+    entities: [Content, Users, Hospital, Promotion, Video, Forum , PromotionLog ],
   });
 
 
