@@ -1,6 +1,7 @@
-import { GraphQLID, GraphQLInt, GraphQLList } from "graphql";
+import { GraphQLFloat, GraphQLID, GraphQLInt, GraphQLList } from "graphql";
 import { UserType } from "../TypeDefs/User";
 import { Users } from "../../Entities/Users";
+import { userInfo } from "os";
 
 export const GET_ALL_USERS = {
   type: new GraphQLList(UserType),
@@ -52,14 +53,14 @@ export const COUNT_USER = {
 };
 
 export const TOTAL_PHQ9 = { 
-  type: GraphQLInt,
+  type: GraphQLFloat,
   async resolve(_: any, __: any, context: any) {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
     const countUser = await Users.count();
-    const phq = await Users.createQueryBuilder().select("SUM(appropiatePHQSeverityScore)").getCount()
+    const phq = await Users.createQueryBuilder().select("SUM(appropiatePHQSeverityScore)","sum").getRawOne();
     console.log(phq)
-    return countUser
+    return phq.sum/countUser
   }
 }
