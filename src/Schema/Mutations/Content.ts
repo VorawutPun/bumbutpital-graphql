@@ -21,6 +21,7 @@ export const CREATE_CONTENT = {
       args;
     const now = Date();
     await Content.insert({
+      userId:context.userId,
       contentID,
       title,
       description,

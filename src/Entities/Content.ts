@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from "./Users";
 
 @Entity()
 export class Content extends BaseEntity {
@@ -26,4 +27,9 @@ export class Content extends BaseEntity {
   @Column()
   contenttype!: string;
 
+  @ManyToOne(()=> Users, (user)=> user.content)
+  user!:Users;
+
+  @Column({nullable:true})
+  userId!: string;
 }

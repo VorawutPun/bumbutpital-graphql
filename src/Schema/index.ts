@@ -7,6 +7,8 @@ import {
 
   PermissionPHQ9,
 
+  STAFF_LOGIN,
+
   UPDATE_PASSWORD,
   USER_LOGIN,
   
@@ -74,6 +76,7 @@ const Mutation = new GraphQLObjectType({
     updatePassword: UPDATE_PASSWORD,
     addPHQScore: ADD_PHQSCORE,
     userLogin: USER_LOGIN,
+    staffLogin: STAFF_LOGIN,
     userRegister: USER_REGISTER,
     createContent: CREATE_CONTENT,
     deleteContent: DELETE_CONTENT,

@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Content } from "./Content";
 
 @Entity()
 export class Users extends BaseEntity {
@@ -31,5 +32,11 @@ export class Users extends BaseEntity {
 
   @Column({nullable:true})
   permissionPHQSeverity!: string;
+
+  @OneToMany(()=>Content,(content)=>content.user)
+  content!:Content[];
+
+  @Column()
+  role!:string;
 }
 

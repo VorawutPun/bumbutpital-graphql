@@ -75,6 +75,30 @@ export const USER_LOGIN = {
   },
 };
 
+export const STAFF_LOGIN = {
+  type: AccessType,
+  args: {
+    username: { type: GraphQLString },
+    password: { type: GraphQLString },
+  },
+  async resolve(parent: any, args: any) {
+    const { username, password } = args;
+    const staff = await Users.findOne({ username: username });
+
+    if (!staff) {
+      throw new Error("Username does not exist!");
+    }
+    const verify = await compare(password, staff.password);
+
+    if (!verify|| staff.role != "staff") {
+      throw new Error("Bad password");
+    }
+    return {
+      accessToken: sign({ userId: staff.id }, "MySecretKey"),
+    };
+  },
+};
+
 export const USER_REGISTER = {
   type: UserType,
   args: {
