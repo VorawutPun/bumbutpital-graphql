@@ -26,5 +26,4 @@ export class Content extends BaseEntity {
   @Column()
   contenttype!: string;
 
-
 }

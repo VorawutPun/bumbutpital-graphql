@@ -1,7 +1,8 @@
-import { GraphQLID, GraphQLList } from "graphql";
+import { GraphQLID, GraphQLInt, GraphQLList } from "graphql";
 import { ContentType } from "../TypeDefs/Content";
 import { Content } from "../../Entities/Content";
 import { Users } from "../../Entities/Users";
+import { createQueryBuilder } from "typeorm";
 
 export const GET_ALL_CONTENT = {
   type: new GraphQLList(ContentType),
@@ -29,6 +30,17 @@ export const GET_CONTENT = {
       throw new Error("Post not found");
     }
   },
+};
+
+export const COUNT_CONTENT = {
+  type: GraphQLInt,
+  async resolve(_: any, __: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const countContent = await Content.count();
+    return countContent
+  }
 };
 
 //Mobew

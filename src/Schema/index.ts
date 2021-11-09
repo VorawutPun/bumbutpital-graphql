@@ -1,5 +1,5 @@
 import { buildSchema, GraphQLObjectType, GraphQLSchema } from "graphql";
-import { GET_ALL_USERS, GET_CURENT_USER, GET_USER } from "./Queries/User";
+import { COUNT_USER, GET_ALL_USERS, GET_CURENT_USER, GET_USER, TOTAL_PHQ9 } from "./Queries/User";
 import {
   ADD_PHQSCORE,
   DELETE_USER,
@@ -12,15 +12,15 @@ import {
   
   /* USER_PROFILE ,*/ USER_REGISTER,
 } from "./Mutations/User";
-import { GET_ALL_CONTENT, GET_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH, GET_SMART_CONTENT_Mild_Depression, GET_SMART_CONTENT_Minimal_Depression, GET_SMART_CONTENT_Moderately_severe_Depression, GET_SMART_CONTENT_Moderate_Depression, GET_SMART_CONTENT_Severe_Depression } from "./Queries/Content";
+import { COUNT_CONTENT, GET_ALL_CONTENT, GET_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH, GET_SMART_CONTENT_Mild_Depression, GET_SMART_CONTENT_Minimal_Depression, GET_SMART_CONTENT_Moderately_severe_Depression, GET_SMART_CONTENT_Moderate_Depression, GET_SMART_CONTENT_Severe_Depression } from "./Queries/Content";
 import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
 import { GET_ALL_Hospital , GET_HOSPITAL} from "./Queries/Hospital";
 import { CREATE_PROMOTION, DELETE_PROMOTION,  } from "./Mutations/Promotion";
 import { GET_ALL_PROMOTION, GET_CURRENT_PROMOTION ,GET_PROMOTIONLOG , GET_PROMOTION} from "./Queries/Promotion";
-import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH, GET_SMART_VIDEO_Minimal_Depression ,GET_SMART_VIDEO_Mild_Depression, GET_SMART_VIDEO_Moderate_Depression, GET_SMART_VIDEO_Moderately_severe_Depression, GET_SMART_VIDEO_Severe_Depression} from "./Queries/Video";
+import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH, GET_SMART_VIDEO_Minimal_Depression ,GET_SMART_VIDEO_Mild_Depression, GET_SMART_VIDEO_Moderate_Depression, GET_SMART_VIDEO_Moderately_severe_Depression, GET_SMART_VIDEO_Severe_Depression, COUNT_VIDEO} from "./Queries/Video";
 import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
-import { GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
+import { COUNT_FORUM, GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
 import { GET_VIDEO} from "./Queries/Video";
 import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
 import { KeepPromotion } from "./Mutations/PromotionLog";
@@ -29,17 +29,22 @@ const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
   fields: {
     getAllUsers: GET_ALL_USERS,
+    getCurrentUser: GET_CURENT_USER,
     getUser: GET_USER,
+    countUser: COUNT_USER,
+    totalPHQ9: TOTAL_PHQ9,
     getAllContent: GET_ALL_CONTENT,
     getContent: GET_CONTENT,
+    countContent: COUNT_CONTENT,
     getAllHospital: GET_ALL_Hospital,
     getHospital: GET_HOSPITAL,
     getAllPromotion: GET_ALL_PROMOTION,
     getPromotion: GET_PROMOTION,
     getAllVideo: GET_ALL_Video,
     getVideo: GET_VIDEO,
+    countVideo: COUNT_VIDEO,
     getAllForum: GET_ALL_FORUM,
-    getCurrentUser: GET_CURENT_USER,
+    countForum: COUNT_FORUM,
     getSmartContent: GET_SMART_CONTENT,
     getSmartVideo: GET_SMART_VIDEO,
     getSmartVideoDepression: GET_SMART_VIDEO_DEPRESSION,
@@ -59,8 +64,6 @@ const RootQuery = new GraphQLObjectType({
     getSevereVideo:GET_SMART_VIDEO_Severe_Depression,
     getCurrentPromotion:GET_CURRENT_PROMOTION,
     getPromotionLog: GET_PROMOTIONLOG,
-    
-
   },
 });
 

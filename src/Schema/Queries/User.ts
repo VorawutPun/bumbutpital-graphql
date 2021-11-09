@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLList } from "graphql";
+import { GraphQLID, GraphQLInt, GraphQLList } from "graphql";
 import { UserType } from "../TypeDefs/User";
 import { Users } from "../../Entities/Users";
 
@@ -39,3 +39,27 @@ export const GET_CURENT_USER = {
     return Users.find({where:{id:context.userId}});
   },
 };
+
+export const COUNT_USER = {
+  type: GraphQLInt,
+  async resolve(_: any, __: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const countUser = await Users.count();
+    return countUser
+  }
+};
+
+export const TOTAL_PHQ9 = { 
+  type: GraphQLInt,
+  async resolve(_: any, __: any, context: any) {
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
+    const countUser = await Users.count();
+    const phq = await Users.createQueryBuilder().select("SUM(appropiatePHQSeverityScore)").getCount()
+    console.log(phq)
+    return countUser
+  }
+}

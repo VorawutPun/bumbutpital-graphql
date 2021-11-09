@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLList } from "graphql";
+import { GraphQLID, GraphQLInt, GraphQLList } from "graphql";
 import { VideoType } from "../TypeDefs/Video";
 import { Video } from "../../Entities/Video";
 import { Users } from "../../Entities/Users";
@@ -29,6 +29,17 @@ export const GET_VIDEO = {
       throw new Error("Post not found");
     }
   },
+};
+
+export const COUNT_VIDEO = {
+  type: GraphQLInt,
+  async resolve(_: any, __: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const countVideo = await Video.count();
+    return countVideo
+  }
 };
 
 export const GET_SMART_VIDEO_DEPRESSION = {
