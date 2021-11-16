@@ -25,7 +25,7 @@ import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
 import { COUNT_FORUM, GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
 import { GET_VIDEO} from "./Queries/Video";
 import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
-import { KeepPromotion } from "./Mutations/PromotionLog";
+import { KeepPromotion} from "./Mutations/PromotionLog";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -90,7 +90,7 @@ const Mutation = new GraphQLObjectType({
     answerForum: ANSWER_FORUM,
     permissionphq9:PermissionPHQ9,
     keepPromotion:KeepPromotion,
-    editprofile: EDIT_PROFILE
+    editprofile: EDIT_PROFILE,
   },
 });
 
