@@ -1,6 +1,5 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Content } from "./Content";
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { EncryptionTransformer } from "typeorm-encrypted";
 
 @Entity()
@@ -14,23 +13,77 @@ export class Users extends BaseEntity {
   @Column()
   password!: string;
 
-  @Column()
-  name!: string;
+  @Column({
+    type: "varchar",
+  nullable: false,
+  transformer: new EncryptionTransformer({
+    key: 'e41c966f21f9e1577802463f8924e6a3fe3e9751f201304213b2f845d8841d61',
+    algorithm: 'aes-256-cbc',
+    ivLength: 16,
+    iv: 'ff5ac19190424b1d88f9419ef949ae56'
+  })
+})
+  name!: string | undefined;
 
-  @Column()
-  surname!: string;
+  @Column({
+    type: "varchar",
+  nullable: false,
+  transformer: new EncryptionTransformer({
+    key: 'e41c966f21f9e1577802463f8924e6a3fe3e9751f201304213b2f845d8841d61',
+    algorithm: 'aes-256-cbc',
+    ivLength: 16,
+    iv: 'ff5ac19190424b1d88f9419ef949ae56'
+  })
+})
+  surname!: string | undefined;
 
-  @Column()
-  email!: string;
+  @Column({
+    type: "varchar",
+  nullable: false,
+  transformer: new EncryptionTransformer({
+    key: 'e41c966f21f9e1577802463f8924e6a3fe3e9751f201304213b2f845d8841d61',
+    algorithm: 'aes-256-cbc',
+    ivLength: 16,
+    iv: 'ff5ac19190424b1d88f9419ef949ae56'
+  })
+})
+  email!: string | undefined;
 
-  @Column()
-  phoneNumber!: string;
+  @Column({
+    type: "varchar",
+  nullable: false,
+  transformer: new EncryptionTransformer({
+    key: 'e41c966f21f9e1577802463f8924e6a3fe3e9751f201304213b2f845d8841d61',
+    algorithm: 'aes-256-cbc',
+    ivLength: 16,
+    iv: 'ff5ac19190424b1d88f9419ef949ae56'
+  })
+})
+  phoneNumber!: string | undefined;
 
-  @Column({ nullable: true })
-  appropiatePHQSeverity!: string;
+  @Column({
+    type: "varchar",
+  nullable: true,
+  transformer: new EncryptionTransformer({
+    key: 'e41c966f21f9e1577802463f8924e6a3fe3e9751f201304213b2f845d8841d61',
+    algorithm: 'aes-256-cbc',
+    ivLength: 16,
+    iv: 'ff5ac19190424b1d88f9419ef949ae56'
+  })
+})
+  appropiatePHQSeverity!: string | undefined;
 
-  @Column({ nullable: true })
-  appropiatePHQSeverityScore!: string;
+  @Column({
+    type: "varchar",
+  nullable: true,
+  transformer: new EncryptionTransformer({
+    key: 'e41c966f21f9e1577802463f8924e6a3fe3e9751f201304213b2f845d8841d61',
+    algorithm: 'aes-256-cbc',
+    ivLength: 16,
+    iv: 'ff5ac19190424b1d88f9419ef949ae56'
+  })
+})
+  appropiatePHQSeverityScore!: string | undefined;
 
   @Column({ nullable: true })
   permissionPHQSeverity!: string;
@@ -38,7 +91,10 @@ export class Users extends BaseEntity {
   @OneToMany(()=>Content,(content)=>content.user)
   content!:Content[];
 
-  @Column()
+  @Column({nullable:true})
   role!:string;
+
+
+
 }
 
