@@ -12,7 +12,7 @@ import { Promotion } from "./Entities/Promotion";
 import { Video } from "./Entities/Video";
 import { Forum } from "./Entities/Forum";
 import { PromotionLog } from "./Entities/PromotionLog";
-import { KeepPromotion } from "./Schema/Mutations/PromotionLog";
+
 
 
 const main = async () => {
