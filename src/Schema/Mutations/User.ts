@@ -134,7 +134,7 @@ export const ADD_PHQSCORE = {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
-    const { appropiatePHQSeverity ,appropiatePHQSeverityScore} = args;
+    const {  appropiatePHQSeverity ,appropiatePHQSeverityScore} = args;
     // const user = await Users.findOne({ id: id }); 
     // const user = context.id;
     await Users.update({ id: context.userId }, { appropiatePHQSeverity: appropiatePHQSeverity , appropiatePHQSeverityScore: appropiatePHQSeverityScore  });
@@ -178,6 +178,8 @@ export const PermissionPHQ9 = {
     return { successful: true, message: "ANSWER" };
   },
 };
+
+
 
 
 

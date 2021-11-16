@@ -38,10 +38,10 @@ export const KeepUsePromotion = {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
-    const { status, pid } = args;
+    const { status, keeppromotionId , usedpromotionId} = args;
     // const user = await Users.findOne({ id: id }); 
     // const user = context.id;
-    await PromotionLog.update({ userId: context.userId,  keeppromotionId: pid}, { status: status ,  });
+    await PromotionLog.update({  userId: context.userId,  keeppromotionId: "1"}, { status: status , usedpromotionId:usedpromotionId  });
     return { successful: true, message: "ANSWER" };
   },
 };

@@ -11,6 +11,7 @@ export const PromotionType = new GraphQLObjectType({
     hospitalDetail: { type: GraphQLString },
     couponCode: { type: GraphQLString },
     Url: { type: GraphQLString },
-    expiredDate: {type: GraphQLString}
+    expiredDate: {type: GraphQLString},
+    secret: {type: GraphQLString},
   }),
 });

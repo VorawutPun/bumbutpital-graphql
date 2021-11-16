@@ -1,4 +1,5 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { EncryptionTransformer } from "typeorm-encrypted";
 
 @Entity()
 export class Promotion extends BaseEntity {
@@ -28,5 +29,4 @@ export class Promotion extends BaseEntity {
 
   @Column({length:1000})
   expiredDate!: string;
-
 }
