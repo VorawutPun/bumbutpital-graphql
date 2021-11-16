@@ -13,6 +13,7 @@ export const UserType = new GraphQLObjectType({
     appropiatePHQSeverity: { type: GraphQLString },
     permissionPHQSeverity: { type: GraphQLString },
     appropiatePHQSeverityScore: { type: GraphQLString },
+    role: { type: GraphQLString },
   }),
   
 });

@@ -84,13 +84,14 @@ export const STAFF_LOGIN = {
   async resolve(parent: any, args: any) {
     const { username, password } = args;
     const staff = await Users.findOne({ username: username });
-
+    
     if (!staff) {
       throw new Error("Username does not exist!");
     }
+    console.log(staff.role, "Role")
     const verify = await compare(password, staff.password);
 
-    if (!verify|| staff.role != "staff") {
+    if (!verify|| staff.role != "SystemAdministrator") {
       throw new Error("Bad password");
     }
     return {
@@ -108,10 +109,11 @@ export const USER_REGISTER = {
     password: { type: GraphQLString },
     email: { type: GraphQLString },
     phoneNumber: { type: GraphQLString },
+    role: { type: GraphQLString },
   },
   async resolve(parent: any, args: any) {
     const hashedPassword = await hash(args.password, 13);
-    const { username, password, name, surname, email, phoneNumber } = args;
+    const { username, password, name, surname, email, phoneNumber,role } = args;
     await Users.insert({
       username,
       password: hashedPassword,
@@ -119,6 +121,7 @@ export const USER_REGISTER = {
       surname,
       email,
       phoneNumber,
+      role,
     });
     return args;
   },
@@ -178,6 +181,3 @@ export const PermissionPHQ9 = {
     return { successful: true, message: "ANSWER" };
   },
 };
-
-
-

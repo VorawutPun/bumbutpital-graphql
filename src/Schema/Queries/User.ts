@@ -55,12 +55,11 @@ export const COUNT_USER = {
 export const TOTAL_PHQ9 = { 
   type: GraphQLFloat,
   async resolve(_: any, __: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const countUser = await Users.count();
     const phq = await Users.createQueryBuilder().select("SUM(appropiatePHQSeverityScore)","sum").getRawOne();
-    console.log(phq)
     return phq.sum/countUser
   }
 }
