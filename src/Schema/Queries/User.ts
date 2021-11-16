@@ -19,9 +19,9 @@ export const GET_USER = {
     id: { type: GraphQLID },
   },
   async resolve(_: any, args: any, context: any) {
-    if (!context.isAuth) {
-      throw new Error("Unauthenticated");
-    }
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
     const user = await Users.findByIds(args.id);
     if (user) {
       return user;
@@ -47,7 +47,7 @@ export const COUNT_USER = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const countUser = await Users.count();
+    const countUser = await Users.count({where:{role: null}})
     return countUser
   }
 };
@@ -58,8 +58,9 @@ export const TOTAL_PHQ9 = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const countUser = await Users.count();
+    const countUser = await Users.count({where:{role: null}})
     const phq = await Users.createQueryBuilder().select("SUM(appropiatePHQSeverityScore)","sum").getRawOne();
+    console.log(phq.sum)
     return phq.sum/countUser
   }
 }
