@@ -16,7 +16,6 @@ export const CREATE_PROMOTION = {
     couponCode: { type: GraphQLString },
     Url: { type: GraphQLString },
     expiredDate: { type: GraphQLString },
-    secret: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
     // if (!context.isAuth) {
@@ -30,7 +29,7 @@ export const CREATE_PROMOTION = {
       couponCode,
       Url,
       expiredDate,
-      secret
+
     } = args;
     const now = Date();
     await Promotion.insert({

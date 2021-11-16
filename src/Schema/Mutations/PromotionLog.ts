@@ -29,19 +29,4 @@ export const KeepPromotion = {
   },
 };
 
-export const KeepUsePromotion = {
-  type: MessageType,
-  args: {
-    status: { type: GraphQLString },
-  },
-  async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
-    const { status, keeppromotionId , usedpromotionId} = args;
-    // const user = await Users.findOne({ id: id }); 
-    // const user = context.id;
-    await PromotionLog.update({  userId: context.userId,  keeppromotionId: "1"}, { status: status , usedpromotionId:usedpromotionId  });
-    return { successful: true, message: "ANSWER" };
-  },
-};
+
