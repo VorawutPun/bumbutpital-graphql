@@ -91,7 +91,7 @@ export const STAFF_LOGIN = {
     console.log(staff.role, "Role")
     const verify = await compare(password, staff.password);
 
-    if (!verify|| staff.role != "SystemAdministrator") {
+    if (!verify || (staff.role != "System Administrator" && staff.role != "Ministry of Public Health Staff")) {
       throw new Error("Bad password");
     }
     return {
