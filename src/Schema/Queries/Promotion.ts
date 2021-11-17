@@ -7,9 +7,9 @@ import { PromotionLogType } from "../TypeDefs/PromotionLog";
 export const GET_ALL_PROMOTION = {
   type: new GraphQLList(PromotionType),
   resolve(_: any, __: any, context: any) {
-    //  if (!context.isAuth) {
-    //   throw new Error('Unauthenticated');
-    // }
+     if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
     return Promotion.find();
   },
 };
