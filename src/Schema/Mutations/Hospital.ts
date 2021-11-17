@@ -1,12 +1,12 @@
+import { Hospital } from './../../Entities/Hospital';
 import { GraphQLID, GraphQLString } from "graphql";
 import { HospitalType } from "../TypeDefs/Hospital";
 import { MessageType } from "../TypeDefs/Messages";
-import { Hospital } from "../../Entities/Hospital";
+import { UserInputError } from "apollo-server-express";
 
 export const CREATE_Hospital = {
   type: HospitalType,
   args: {
-    staffID: { type: GraphQLString },
     hospitalName: { type: GraphQLString },
     hospitalDescription: { type: GraphQLString },
     imageUrl: { type: GraphQLString },
@@ -15,10 +15,13 @@ export const CREATE_Hospital = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const { staffID, hospitalName, hospitalDescription, imageUrl } =
-      args;
+    if (!args.hospitalName) {
+      throw new Error("Please enter hospitalName");
+    }
+
+    const { hospitalName, hospitalDescription, imageUrl } = args;
     await Hospital.insert({
-      staffID,
+      userId: context.userId,
       hospitalName,
       hospitalDescription,
       imageUrl,
@@ -39,3 +42,23 @@ export const DELETE_Hospital = {
     return { successful: true, message: "DELETE WORKED" };
   },
 };
+
+export const UPDATE_HOSPITAL = {
+  type: HospitalType,
+  args: {
+    hospitalID: { type: GraphQLID },
+    hospitalName: { type: GraphQLString },
+    hospitalDescription: { type: GraphQLString },
+    imageUrl: { type: GraphQLString },
+  },
+  async resolve(_: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const {hospitalID} = args;
+    await Hospital.update({hospitalID},{...args});
+    return args;
+  },
+};
+
+

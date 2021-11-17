@@ -6,34 +6,29 @@ import { Video } from "../../Entities/Video";
 export const CREATE_Video = {
   type: VideoType,
   args: {
-    staffID: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
     title: { type: GraphQLString },
     pictureUrl: { type: GraphQLString },
     videoUrl: { type: GraphQLString },
-    videoType: { type: GraphQLString }
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const {
-      staffID,
       appropiatePHQSeverity,
       title,
       pictureUrl,
       videoUrl,
-      videoType
     } = args;
     const now = Date();
     await Video.insert({
-      staffID,
+      userId:context.userId,
       appropiatePHQSeverity,
       title,
       pictureUrl,
       createAt: now,
       videoUrl,
-      videoType
     });
     return args;
   },
@@ -54,3 +49,25 @@ export const DELETE_Video = {
     return { successful: true, message: "DELETE WORKED" };
   },
 };
+
+export const UPDATE_VIDEO = {
+  type: VideoType,
+  args: {
+    videoID: { type: GraphQLID },
+    staffID: { type: GraphQLString },
+    appropiatePHQSeverity: { type: GraphQLString },
+    title: { type: GraphQLString },
+    pictureUrl: { type: GraphQLString },
+    videoUrl: { type: GraphQLString },
+  },
+  async resolve(_: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const {videoID} = args;
+    console.log(args)
+    await Video.update({videoID},{...args});
+    return args;
+  },
+};
+

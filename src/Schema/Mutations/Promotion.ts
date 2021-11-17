@@ -2,8 +2,6 @@ import { GraphQLID, GraphQLString } from "graphql";
 import { PromotionType } from "../TypeDefs/Promotion";
 import { MessageType } from "../TypeDefs/Messages";
 import { Promotion } from "../../Entities/Promotion";
-import { PromotionLog } from "../../Entities/PromotionLog";
-import { PromotionLogType } from "../TypeDefs/PromotionLog";
 
 export const CREATE_PROMOTION = {
   type: PromotionType,
@@ -29,7 +27,6 @@ export const CREATE_PROMOTION = {
       couponCode,
       Url,
       expiredDate,
-
     } = args;
     const now = Date();
     await Promotion.insert({
@@ -45,7 +42,6 @@ export const CREATE_PROMOTION = {
     return args;
   },
 };
-
 export const DELETE_PROMOTION = {
   type: MessageType,
   args: {
@@ -62,3 +58,25 @@ export const DELETE_PROMOTION = {
   },
 };
 
+export const UPDATE_PROMOTION = {
+  type: PromotionType,
+  args: {
+    promotionId: { type: GraphQLID },
+    hospitalId: { type: GraphQLString },
+    userId: { type: GraphQLString },
+    title: { type: GraphQLString },
+    hospitalDetail: { type: GraphQLString },
+    couponCode: { type: GraphQLString },
+    Url: { type: GraphQLString },
+    expiredDate: { type: GraphQLString },
+  },
+  async resolve(parent: any, args: any, context: any) {
+    // if (!context.isAuth) {
+    //   throw new Error("Unauthenticated");
+    // }
+    const {promotionId} = args;
+    console.log(args)
+    await Promotion.update({promotionId},{...args});
+    return args;
+  },
+};

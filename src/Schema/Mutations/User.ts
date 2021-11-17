@@ -84,11 +84,19 @@ export const STAFF_LOGIN = {
   async resolve(parent: any, args: any) {
     const { username, password } = args;
     const staff = await Users.findOne({ username: username });
+
+    if(!staff?.username){
+      return { message: "Please enter your username."}
+    }
+    
+    if(!staff?.password){
+      return { message: "Please enter your password."}
+    }
     
     if (!staff) {
-      throw new Error("Username does not exist!");
+      return { message: "Username doesn't exist."}
     }
-    console.log(staff.role, "Role")
+    
     const verify = await compare(password, staff.password);
 
     if (!verify || (staff.role != "System Administrator" && staff.role != "Ministry of Public Health Staff")) {

@@ -11,13 +11,15 @@ export const CREATE_CONTENT = {
     description: { type: GraphQLString },
     pictureUrl: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
-    contenttype: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
-    const { contentID, title, description, pictureUrl, appropiatePHQSeverity ,contenttype} =
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    if(!args.title){
+      throw new Error("Please fill title.");
+    }
+    const { contentID, title, description, pictureUrl, appropiatePHQSeverity} =
       args;
     const now = Date();
     await Content.insert({
@@ -29,7 +31,6 @@ export const CREATE_CONTENT = {
       appropiatePHQSeverity,
       updateTime: now,
       createAt: now,
-      contenttype
     });
     return args;
   },
@@ -50,3 +51,24 @@ export const DELETE_CONTENT = {
     return { successful: true, message: "DELETE WORKED" };
   },
 };
+
+export const UPDATE_CONTENT = {
+  type: ContentType,
+  args: {
+    contentID: { type: GraphQLID },
+    title: { type: GraphQLString },
+    description: { type: GraphQLString },
+    pictureUrl: { type: GraphQLString },
+    appropiatePHQSeverity: { type: GraphQLString },
+  },
+  async resolve(_: any, args: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const {contentID} = args;
+    console.log(args)
+    await Content.update({contentID},{...args});
+    return args;
+  },
+};
+
