@@ -13,5 +13,6 @@ export const AccessType = new GraphQLObjectType({
   name: "accessToken",
   fields: () => ({
     accessToken: { type: GraphQLString },
+    message: { type: GraphQLString },
   }),
 });
