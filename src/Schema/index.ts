@@ -15,13 +15,13 @@ import {
   /* USER_PROFILE ,*/ USER_REGISTER,
 } from "./Mutations/User";
 import { COUNT_CONTENT, GET_ALL_CONTENT, GET_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH, GET_SMART_CONTENT_Mild_Depression, GET_SMART_CONTENT_Minimal_Depression, GET_SMART_CONTENT_Moderately_severe_Depression, GET_SMART_CONTENT_Moderate_Depression, GET_SMART_CONTENT_Severe_Depression } from "./Queries/Content";
-import { CREATE_CONTENT, DELETE_CONTENT } from "./Mutations/Content";
-import { CREATE_Hospital, DELETE_Hospital } from "./Mutations/Hospital";
+import { CREATE_CONTENT, DELETE_CONTENT, UPDATE_CONTENT } from "./Mutations/Content";
+import { CREATE_Hospital, DELETE_Hospital, UPDATE_HOSPITAL } from "./Mutations/Hospital";
 import { GET_ALL_Hospital , GET_HOSPITAL} from "./Queries/Hospital";
-import { CREATE_PROMOTION, DELETE_PROMOTION,  } from "./Mutations/Promotion";
+import { CREATE_PROMOTION, DELETE_PROMOTION, UPDATE_PROMOTION,  } from "./Mutations/Promotion";
 import { GET_ALL_PROMOTION, GET_CURRENT_PROMOTION ,GET_PROMOTIONLOG , GET_PROMOTION} from "./Queries/Promotion";
 import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH, GET_SMART_VIDEO_Minimal_Depression ,GET_SMART_VIDEO_Mild_Depression, GET_SMART_VIDEO_Moderate_Depression, GET_SMART_VIDEO_Moderately_severe_Depression, GET_SMART_VIDEO_Severe_Depression, COUNT_VIDEO} from "./Queries/Video";
-import { CREATE_Video, DELETE_Video } from "./Mutations/Video";
+import { CREATE_Video, DELETE_Video, UPDATE_VIDEO } from "./Mutations/Video";
 import { COUNT_FORUM, GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
 import { GET_VIDEO} from "./Queries/Video";
 import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
@@ -80,12 +80,16 @@ const Mutation = new GraphQLObjectType({
     userRegister: USER_REGISTER,
     createContent: CREATE_CONTENT,
     deleteContent: DELETE_CONTENT,
+    updateContent: UPDATE_CONTENT,
     createHospital: CREATE_Hospital,
     deleteHospital: DELETE_Hospital,
+    updateHospital: UPDATE_HOSPITAL,
     createPromotion: CREATE_PROMOTION,
     deletePromotion: DELETE_PROMOTION,
+    updatePromotion: UPDATE_PROMOTION,
     deleteVideo: DELETE_Video,
     createVideo: CREATE_Video,
+    updateVideo: UPDATE_VIDEO,
     createForum: CREATE_FORUM,
     answerForum: ANSWER_FORUM,
     permissionphq9:PermissionPHQ9,
