@@ -1,6 +1,8 @@
+import { Hospital } from './Hospital';
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Content } from "./Content";
 import { EncryptionTransformer } from "typeorm-encrypted";
+import { Video } from "./Video";
 
 @Entity()
 export class Users extends BaseEntity {
@@ -88,12 +90,17 @@ export class Users extends BaseEntity {
   @Column({ nullable: true })
   appropiatePHQSeverityScore!: string;
 
-
   @Column({ nullable: true })
   permissionPHQSeverity!: string;
 
   @OneToMany(() => Content, (content) => content.user)
   content!: Content[];
+
+  @OneToMany(() => Video, (video) => video.user)
+  video!: Video[];
+
+  @OneToMany(() => Hospital, (hospital) => hospital.user)
+  hospital!: Hospital[];
 
   @Column({ nullable: true })
   role!: string;
