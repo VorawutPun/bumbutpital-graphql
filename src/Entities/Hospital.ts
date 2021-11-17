@@ -1,12 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from "./Users";
 
 @Entity()
 export class Hospital extends BaseEntity {
   @PrimaryGeneratedColumn()
   hospitalID!: number;
-
-  @Column()
-  staffID!: string;
 
   @Column()
   hospitalName!: string;
@@ -16,5 +14,11 @@ export class Hospital extends BaseEntity {
 
   @Column({length:5000})
   imageUrl!: string;
+
+  @ManyToOne(()=> Users, (user)=> user.hospital)
+  user!:Users;
+
+  @Column({nullable:true})
+  userId!: string;
 
 }
