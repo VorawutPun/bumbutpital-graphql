@@ -1,12 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from "./Users";
 
 @Entity()
 export class Video extends BaseEntity {
   @PrimaryGeneratedColumn()
   videoID!: number;
-
-  @Column()
-  staffID!: string;
 
   @Column()
   appropiatePHQSeverity!: string;
@@ -23,6 +21,9 @@ export class Video extends BaseEntity {
   @Column({length:1000})
   videoUrl!: string;
 
-  @Column({length:1000})
-  videoType!: string;
+  @ManyToOne(()=> Users, (user)=> user.video)
+  user!:Users;
+
+  @Column({nullable:true})
+  userId!: string;
 }
