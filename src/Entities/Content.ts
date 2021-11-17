@@ -24,9 +24,6 @@ export class Content extends BaseEntity {
   @Column()
   title!: string;
 
-  @Column()
-  contenttype!: string;
-
   @ManyToOne(()=> Users, (user)=> user.content)
   user!:Users;
 
