@@ -28,24 +28,38 @@ export const CREATE_FORUM = {
   },
 };
 
+// export const ANSWER_FORUM = {
+//   type: ForumType,
+//   args: {
+//     forumID: { type: GraphQLID },
+//     answer: { type: GraphQLString },
+//   },
+//   async resolve(_: any, args: any, context: any) {
+//     if (!context.isAuth) {
+//       throw new Error("Unauthenticated");
+//     }
+//     const { forumID } = args;
+//     await Forum.update({ forumID }, { staffID: context.userId }, { ...args });
+//     return args
+//   },
+// };
 export const ANSWER_FORUM = {
   type: MessageType,
   args: {
-    forumID: { type: GraphQLString },
-    adminAnswer: { type: GraphQLString },
+    forumID: { type: GraphQLID },
+    answer: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any, context: any) {
+  async resolve(_: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const { forumID, adminAnswer } = args;
+    const { forumID , answer } = args;
     const forum = await Forum.findOne({ forumID: forumID });
-
     if (!forum) {
       throw new Error("No question");
     }
     if (forum) {
-      await Forum.update({ staffID: context.userId }, { ...args });
+      await Forum.update({ forumID },{ staffID: context.userId , answer:answer });
       return { successful: true, message: "ANSWER" };
     } else {
       throw new Error();
