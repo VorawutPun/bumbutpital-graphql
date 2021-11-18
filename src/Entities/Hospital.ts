@@ -6,9 +6,6 @@ export class Hospital extends BaseEntity {
   @PrimaryGeneratedColumn()
   hospitalID!: number;
 
-  @Column()
-  staffID!: string;
-
   @Column("longtext")
   hospitalName!: string;
 
