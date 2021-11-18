@@ -1,4 +1,4 @@
-import { ForumType } from './../TypeDefs/Forum';
+import { ForumType } from "./../TypeDefs/Forum";
 import { GraphQLID, GraphQLString } from "graphql";
 import { Forum } from "../../Entities/Forum";
 import { MessageType } from "../TypeDefs/Messages";
@@ -18,7 +18,7 @@ export const CREATE_FORUM = {
     const { title, description, answer } = args;
     const now = Date();
     await Forum.insert({
-      userID:context.userId,
+      userID: context.userId,
       title,
       description,
       answer,
@@ -45,7 +45,7 @@ export const ANSWER_FORUM = {
       throw new Error("No question");
     }
     if (forum) {
-      await Forum.update({ forumID: forumID }, { answer: adminAnswer });
+      await Forum.update({ staffID: context.userId }, { ...args });
       return { successful: true, message: "ANSWER" };
     } else {
       throw new Error();

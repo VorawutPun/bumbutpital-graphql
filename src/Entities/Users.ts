@@ -104,8 +104,6 @@ export class Users extends BaseEntity {
 
   @Column({ nullable: true })
   role!: string;
-
-
-
+  
 }
 

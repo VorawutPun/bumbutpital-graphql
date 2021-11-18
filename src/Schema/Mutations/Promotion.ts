@@ -16,9 +16,9 @@ export const CREATE_PROMOTION = {
     expiredDate: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const {
       hospitalId,
       userId,
@@ -71,9 +71,9 @@ export const UPDATE_PROMOTION = {
     expiredDate: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const {promotionId} = args;
     console.log(args)
     await Promotion.update({promotionId},{...args});
