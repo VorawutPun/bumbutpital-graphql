@@ -6,7 +6,7 @@ export class Content extends BaseEntity {
   @PrimaryGeneratedColumn()
   contentID!: number;
 
-  @Column({length:10000})
+  @Column("longtext")
   description!: string;
 
   @Column()

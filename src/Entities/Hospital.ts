@@ -7,9 +7,12 @@ export class Hospital extends BaseEntity {
   hospitalID!: number;
 
   @Column()
+  staffID!: string;
+
+  @Column("longtext")
   hospitalName!: string;
 
-  @Column({length:10000})
+  @Column("longtext")
   hospitalDescription!: string;
 
   @Column({length:5000})
