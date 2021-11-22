@@ -3,7 +3,10 @@ import { UserType } from "../TypeDefs/User";
 import { AccessType, MessageType } from "../TypeDefs/Messages";
 import { Users } from "../../Entities/Users";
 import { sign } from "jsonwebtoken";
+import { PHQ9Log } from "../../Entities/PHQ9Log";
+import { PHQ9LogType } from "../TypeDefs/PHQ9Log";
 import { compare, hash } from "bcryptjs";
+import { MixType } from "../TypeDefs/Mix";
 
 export const UPDATE_PASSWORD = {
   type: MessageType,
@@ -136,22 +139,35 @@ export const USER_REGISTER = {
 };
 
 export const ADD_PHQSCORE = {
-  type: MessageType,
+  type: MixType,
   args: {
+    userID:{ type: GraphQLString },
+    appropiatePHQSeverityLog: { type: GraphQLString },
+    appropiatePHQSeverityScoreLog: { type: GraphQLString },
+    date: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
     appropiatePHQSeverityScore: { type: GraphQLString },
+
   },
   async resolve(parent: any, args: any, context: any) {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
-    const {  appropiatePHQSeverity ,appropiatePHQSeverityScore} = args;
+    const now = Date();
+    const {  appropiatePHQSeverity ,appropiatePHQSeverityScore , appropiatePHQSeverityLog ,appropiatePHQSeverityScoreLog } = args;
     // const user = await Users.findOne({ id: id }); 
     // const user = context.id;
     await Users.update({ id: context.userId }, { appropiatePHQSeverity: appropiatePHQSeverity , appropiatePHQSeverityScore: appropiatePHQSeverityScore  });
-    return { successful: true, message: "ANSWER" };
+    await PHQ9Log.insert({
+      userID: context.userId,
+      appropiatePHQSeverityLog,
+      appropiatePHQSeverityScoreLog,
+      date: now
+    });
+    return args;
   },
 };
+
 
 export const EDIT_PROFILE = {
   type: MessageType,

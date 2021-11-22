@@ -2,6 +2,7 @@ import { GraphQLFloat, GraphQLID, GraphQLInt, GraphQLList } from "graphql";
 import { UserType } from "../TypeDefs/User";
 import { Users } from "../../Entities/Users";
 import { userInfo } from "os";
+import { OnlyUserName } from "../TypeDefs/OnlyUserName";
 
 export const GET_ALL_USERS = {
   type: new GraphQLList(UserType),
@@ -9,6 +10,16 @@ export const GET_ALL_USERS = {
      if (!context.isAuth) {
       throw new Error('Unauthenticated');
     }
+    return Users.find();
+  },
+};
+
+export const GET_ONLY_USERNAME = {
+  type: new GraphQLList(OnlyUserName),
+  resolve(_: any, __: any, context: any) {
+    //  if (!context.isAuth) {
+    //   throw new Error('Unauthenticated');
+    // }
     return Users.find();
   },
 };
