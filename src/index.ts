@@ -12,6 +12,7 @@ import { Promotion } from "./Entities/Promotion";
 import { Video } from "./Entities/Video";
 import { Forum } from "./Entities/Forum";
 import { PromotionLog } from "./Entities/PromotionLog";
+import { PHQ9Log } from "./Entities/PHQ9Log";
 
 
 
@@ -53,7 +54,7 @@ const main = async () => {
     password:"",
     logging: true,
     synchronize: true,
-    entities: [Content, Users, Hospital, Promotion, Video, Forum , PromotionLog ],
+    entities: [Content, Users, Hospital, Promotion, Video, Forum , PromotionLog ,PHQ9Log ],
   });
 
 

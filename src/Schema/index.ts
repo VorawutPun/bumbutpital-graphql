@@ -1,5 +1,5 @@
 import { buildSchema, GraphQLObjectType, GraphQLSchema } from "graphql";
-import { COUNT_USER, GET_ALL_USERS, GET_CURENT_USER, GET_USER, TOTAL_PHQ9 } from "./Queries/User";
+import { COUNT_USER, GET_ALL_USERS, GET_CURENT_USER, GET_ONLY_USERNAME, GET_USER, TOTAL_PHQ9 } from "./Queries/User";
 import {
   ADD_PHQSCORE,
   DELETE_USER,
@@ -11,21 +11,23 @@ import {
 
   UPDATE_PASSWORD,
   USER_LOGIN,
-  
+
   /* USER_PROFILE ,*/ USER_REGISTER,
 } from "./Mutations/User";
 import { COUNT_CONTENT, GET_ALL_CONTENT, GET_CONTENT, GET_SMART_CONTENT, GET_SMART_CONTENT_DEPRESSION, GET_SMART_CONTENT_HEALTH, GET_SMART_CONTENT_Mild_Depression, GET_SMART_CONTENT_Minimal_Depression, GET_SMART_CONTENT_Moderately_severe_Depression, GET_SMART_CONTENT_Moderate_Depression, GET_SMART_CONTENT_Severe_Depression } from "./Queries/Content";
+import { GET_ALL_Hospital, GET_HOSPITAL } from "./Queries/Hospital";
+import { GET_ALL_PROMOTION, GET_CURRENT_PROMOTION, GET_PROMOTIONLOG, GET_PROMOTION } from "./Queries/Promotion";
+import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH, GET_SMART_VIDEO_Minimal_Depression, GET_SMART_VIDEO_Mild_Depression, GET_SMART_VIDEO_Moderate_Depression, GET_SMART_VIDEO_Moderately_severe_Depression, GET_SMART_VIDEO_Severe_Depression, COUNT_VIDEO } from "./Queries/Video";
 import { CREATE_CONTENT, DELETE_CONTENT, UPDATE_CONTENT } from "./Mutations/Content";
 import { CREATE_Hospital, DELETE_Hospital, UPDATE_HOSPITAL } from "./Mutations/Hospital";
-import { GET_ALL_Hospital , GET_HOSPITAL} from "./Queries/Hospital";
 import { CREATE_PROMOTION, DELETE_PROMOTION, UPDATE_PROMOTION,  } from "./Mutations/Promotion";
-import { GET_ALL_PROMOTION, GET_CURRENT_PROMOTION ,GET_PROMOTIONLOG , GET_PROMOTION} from "./Queries/Promotion";
-import { GET_ALL_Video, GET_SMART_VIDEO, GET_SMART_VIDEO_DEPRESSION, GET_SMART_VIDEO_HEALTH, GET_SMART_VIDEO_Minimal_Depression ,GET_SMART_VIDEO_Mild_Depression, GET_SMART_VIDEO_Moderate_Depression, GET_SMART_VIDEO_Moderately_severe_Depression, GET_SMART_VIDEO_Severe_Depression, COUNT_VIDEO} from "./Queries/Video";
 import { CREATE_Video, DELETE_Video, UPDATE_VIDEO } from "./Mutations/Video";
 import { COUNT_FORUM, GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
-import { GET_VIDEO} from "./Queries/Video";
+import { GET_VIDEO } from "./Queries/Video";
 import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
-import { KeepPromotion} from "./Mutations/PromotionLog";
+import { KeepPromotion } from "./Mutations/PromotionLog";
+import { ADD_PHQ9Log } from "./Mutations/PHQ9Log";
+import { GET_CURENT_PHQ9Log } from "./Queries/PHQ9Log";
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQuery",
@@ -55,17 +57,19 @@ const RootQuery = new GraphQLObjectType({
     getSmartContentDepression: GET_SMART_CONTENT_DEPRESSION,
     getcurrentForum: GET_CURENT_FORUM,
     getMinimalContent: GET_SMART_CONTENT_Minimal_Depression,
-    getMildContent:  GET_SMART_CONTENT_Mild_Depression,
+    getMildContent: GET_SMART_CONTENT_Mild_Depression,
     getModerateContent: GET_SMART_CONTENT_Moderate_Depression,
     getModeratelySeverContent: GET_SMART_CONTENT_Moderately_severe_Depression,
-    getSevereContent:GET_SMART_CONTENT_Severe_Depression,
+    getSevereContent: GET_SMART_CONTENT_Severe_Depression,
     getMinimalVideo: GET_SMART_VIDEO_Minimal_Depression,
-    getMildVideo:  GET_SMART_VIDEO_Mild_Depression,
+    getMildVideo: GET_SMART_VIDEO_Mild_Depression,
     getModerateVideo: GET_SMART_VIDEO_Moderate_Depression,
     getModeratelySeverVideo: GET_SMART_VIDEO_Moderately_severe_Depression,
-    getSevereVideo:GET_SMART_VIDEO_Severe_Depression,
-    getCurrentPromotion:GET_CURRENT_PROMOTION,
+    getSevereVideo: GET_SMART_VIDEO_Severe_Depression,
+    getCurrentPromotion: GET_CURRENT_PROMOTION,
     getPromotionLog: GET_PROMOTIONLOG,
+    getPHQ9Log: GET_CURENT_PHQ9Log,
+    onlyusername: GET_ONLY_USERNAME
   },
 });
 
@@ -92,9 +96,10 @@ const Mutation = new GraphQLObjectType({
     updateVideo: UPDATE_VIDEO,
     createForum: CREATE_FORUM,
     answerForum: ANSWER_FORUM,
-    permissionphq9:PermissionPHQ9,
-    keepPromotion:KeepPromotion,
+    permissionphq9: PermissionPHQ9,
+    keepPromotion: KeepPromotion,
     editprofile: EDIT_PROFILE,
+    addCurrentPHQ9Log: ADD_PHQ9Log
   },
 });
 

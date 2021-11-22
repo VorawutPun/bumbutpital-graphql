@@ -87,6 +87,10 @@ export class Users extends BaseEntity {
   // })
   //   appropiatePHQSeverityScore!: string | undefined;
 
+ 
+
+ 
+
   @Column({ nullable: true })
   appropiatePHQSeverityScore!: string;
 
