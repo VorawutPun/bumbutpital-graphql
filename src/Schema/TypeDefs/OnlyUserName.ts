@@ -5,7 +5,5 @@ export const OnlyUserName = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     username: { type: GraphQLString },
-    
   }),
-  
 });

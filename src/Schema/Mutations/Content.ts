@@ -66,8 +66,9 @@ export const UPDATE_CONTENT = {
       throw new Error("Unauthenticated");
     }
     const {contentID} = args;
+    const now = Date();
     console.log(args)
-    await Content.update({contentID},{...args});
+    await Content.update({contentID},{updateTime: now, ...args});
     return args;
   },
 };

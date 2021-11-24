@@ -6,18 +6,18 @@ export const GET_ALL_PHQ9Log = {
   type: new GraphQLList(PHQ9LogType),
   resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+      throw new Error("Unauthenticated");
     }
     return PHQ9Log.find();
   },
 };
 
 export const GET_CURENT_PHQ9Log = {
-    type: new GraphQLList(PHQ9LogType),
-    resolve(_: any, __: any, context: any) {
-       if (!context.isAuth) {
-        throw new Error('Unauthenticated');
-      }
-      return PHQ9Log.find({where:{userID:context.userId}});
-    },
-  };
+  type: new GraphQLList(PHQ9LogType),
+  resolve(_: any, __: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    return PHQ9Log.find({ where: { userID: context.userId } });
+  },
+};

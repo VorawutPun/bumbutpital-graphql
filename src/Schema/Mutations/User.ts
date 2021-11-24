@@ -87,7 +87,6 @@ export const STAFF_LOGIN = {
   async resolve(parent: any, args: any) {
     const { username, password } = args;
     const staff = await Users.findOne({ username: username });
-
     if(!staff?.username){
       return { message: "Please enter your username."}
     }
@@ -95,14 +94,18 @@ export const STAFF_LOGIN = {
     if(!staff?.password){
       return { message: "Please enter your password."}
     }
-    
     if (!staff) {
-      return { message: "Username doesn't exist."}
+      // return { message: "Username doesn't exist."}
+      throw new Error("Username does not exist!");
     }
-    
+
     const verify = await compare(password, staff.password);
 
-    if (!verify || (staff.role != "System Administrator" && staff.role != "Ministry of Public Health Staff")) {
+    if (
+      !verify ||
+      (staff.role != "System Administrator" &&
+        staff.role != "Ministry of Public Health Staff")
+    ) {
       throw new Error("Bad password");
     }
     return {
@@ -124,7 +127,14 @@ export const USER_REGISTER = {
   },
   async resolve(parent: any, args: any) {
     const hashedPassword = await hash(args.password, 13);
-    const { username, password, name, surname, email, phoneNumber,role } = args;
+    const { username, password, name, surname, email, phoneNumber, role } =
+      args;
+    const staff = await Users.findOne({ username: username });
+
+    if (staff) {
+      // throw new Error("Username already exist.");
+      return { message: "Please enter your password."} 
+    }
     await Users.insert({
       username,
       password: hashedPassword,
@@ -141,33 +151,42 @@ export const USER_REGISTER = {
 export const ADD_PHQSCORE = {
   type: MixType,
   args: {
-    userID:{ type: GraphQLString },
+    userID: { type: GraphQLString },
     appropiatePHQSeverityLog: { type: GraphQLString },
     appropiatePHQSeverityScoreLog: { type: GraphQLString },
     date: { type: GraphQLString },
     appropiatePHQSeverity: { type: GraphQLString },
     appropiatePHQSeverityScore: { type: GraphQLString },
-
   },
   async resolve(parent: any, args: any, context: any) {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
     const now = Date();
-    const {  appropiatePHQSeverity ,appropiatePHQSeverityScore , appropiatePHQSeverityLog ,appropiatePHQSeverityScoreLog } = args;
-    // const user = await Users.findOne({ id: id }); 
+    const {
+      appropiatePHQSeverity,
+      appropiatePHQSeverityScore,
+      appropiatePHQSeverityLog,
+      appropiatePHQSeverityScoreLog,
+    } = args;
+    // const user = await Users.findOne({ id: id });
     // const user = context.id;
-    await Users.update({ id: context.userId }, { appropiatePHQSeverity: appropiatePHQSeverity , appropiatePHQSeverityScore: appropiatePHQSeverityScore  });
+    await Users.update(
+      { id: context.userId },
+      {
+        appropiatePHQSeverity: appropiatePHQSeverity,
+        appropiatePHQSeverityScore: appropiatePHQSeverityScore,
+      }
+    );
     await PHQ9Log.insert({
       userID: context.userId,
       appropiatePHQSeverityLog,
       appropiatePHQSeverityScoreLog,
-      date: now
+      date: now,
     });
     return args;
   },
 };
-
 
 export const EDIT_PROFILE = {
   type: MessageType,
@@ -181,10 +200,13 @@ export const EDIT_PROFILE = {
     // if (!context.isAuth) {
     //   throw new Error("Unauthenticated");
     // }
-    const {  name , surname , email , phoneNumber} = args;
-    // const user = await Users.findOne({ id: id }); 
+    const { name, surname, email, phoneNumber } = args;
+    // const user = await Users.findOne({ id: id });
     // const user = context.id;
-    await Users.update({ id: context.userId }, { name : name , surname:surname ,email:email , phoneNumber:phoneNumber } ,);
+    await Users.update(
+      { id: context.userId },
+      { name: name, surname: surname, email: email, phoneNumber: phoneNumber }
+    );
     return { successful: true, message: "ANSWER" };
   },
 };
@@ -199,9 +221,12 @@ export const PermissionPHQ9 = {
     //   throw new Error("Unauthenticated");
     // }
     const { permissionPHQSeverity } = args;
-    // const user = await Users.findOne({ id: id }); 
+    // const user = await Users.findOne({ id: id });
     // const user = context.id;
-    await Users.update({ id: context.userId }, { permissionPHQSeverity: permissionPHQSeverity });
+    await Users.update(
+      { id: context.userId },
+      { permissionPHQSeverity: permissionPHQSeverity }
+    );
     return { successful: true, message: "ANSWER" };
   },
 };
