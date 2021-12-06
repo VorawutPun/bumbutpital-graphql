@@ -8,6 +8,8 @@ import { PHQ9LogType } from "../TypeDefs/PHQ9Log";
 import { compare, hash } from "bcryptjs";
 import { MixType } from "../TypeDefs/Mix";
 
+const nodeMailer = require('nodemailer');
+
 export const UPDATE_PASSWORD = {
   type: MessageType,
   args: {
@@ -130,6 +132,24 @@ export const USER_REGISTER = {
     const { username, password, name, surname, email, phoneNumber, role } =
       args;
     const staff = await Users.findOne({ username: username });
+
+    console.log(role);
+
+    if(role  === "Ministry of Public Health Staff"){
+       const transporter = nodeMailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'bumbutpital@gmail.com',
+        pass: 'bewtaepun123',
+      },
+    });
+    await transporter.sendMail({
+      from: 'Bumbutpital System <bumbutpital@gmail.com>',
+      to: email,
+      subject: 'test',
+      html: `<h1>${username}</h1>${password}`,
+    });
+    }
 
     if (staff) {
       // throw new Error("Username already exist.");
