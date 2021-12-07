@@ -8,7 +8,7 @@ import { PHQ9LogType } from "../TypeDefs/PHQ9Log";
 import { compare, hash } from "bcryptjs";
 import { MixType } from "../TypeDefs/Mix";
 
-const nodeMailer = require('nodemailer');
+const nodeMailer = require("nodemailer");
 
 export const UPDATE_PASSWORD = {
   type: MessageType,
@@ -89,12 +89,12 @@ export const STAFF_LOGIN = {
   async resolve(parent: any, args: any) {
     const { username, password } = args;
     const staff = await Users.findOne({ username: username });
-    if(!staff?.username){
-      return { message: "Please enter your username."}
+    if (!staff?.username) {
+      return { message: "Please enter your username." };
     }
-    
-    if(!staff?.password){
-      return { message: "Please enter your password."}
+
+    if (!staff?.password) {
+      return { message: "Please enter your password." };
     }
     if (!staff) {
       // return { message: "Username doesn't exist."}
@@ -135,25 +135,52 @@ export const USER_REGISTER = {
 
     console.log(role);
 
-    if(role  === "Ministry of Public Health Staff"){
-       const transporter = nodeMailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'bumbutpital@gmail.com',
-        pass: 'bewtaepun123',
-      },
-    });
-    await transporter.sendMail({
-      from: 'Bumbutpital System <bumbutpital@gmail.com>',
-      to: email,
-      subject: 'test',
-      html: `<h1>${username}</h1>${password}`,
-    });
+    if (role === "Ministry of Public Health Staff") {
+      const transporter = nodeMailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "bumbutpital@gmail.com",
+          pass: "bewtaepun123",
+        },
+      });
+      await transporter.sendMail({
+        from: "Bumbutpital System <bumbutpital@gmail.com>",
+        to: email,
+        subject: "[Bumbutpital] Username and Password ",
+        html: `<table style="width:100%;background-color:#f1f1f1;padding-top:30px" cellpadding="10" cellspacing="0" border="0" align="center">
+        <tbody>
+         <tr>
+          <td align="center">
+           <img src="https://firebasestorage.googleapis.com/v0/b/bumbutpital-fe811.appspot.com/o/video%2F08e24a82-7321-413d-aaf8-2f3d6d552911.jpg?alt=media&token=feace7ed-b9a5-486b-8165-c079b5d22931" alt="bumbutpital" style="padding-top:30px;width:100%;max-width:100px;" class="CToWUd"><h1>Bumbutpital</h1>
+          </td>
+         </tr>
+         <tr>
+          <td style="font-family:Helvetica,Arial,sans-serif;font-size:11px" align="center">
+           <table style="width:100%;max-width:600px;background-color:#ffffff;border-width:1px;border-color:#d1d1d1;border-radius:3px" cellpadding="20" cellspacing="0" align="center">
+            <tbody>
+             <tr>
+              <td style="font-size:16px" align="left">
+              <h2>Hi, Welcome to BUMBUTPITAL family!</h2>
+              <h3>Username and Password</h3>
+              <p>Username : ${username}</p>
+              <p>Password : ${password}</p>
+              <hr>
+              <p><a href="http://localhost:3000/login">Login Here</a></p>
+            </td>
+             </tr>
+            </tbody>
+           </table>
+           <p style="padding-top:30px;margin-bottom:0">Delivered by BUMBUTPITAL</p>
+          </td>
+         </tr>
+        </tbody>
+       </table>`,
+      });
     }
 
     if (staff) {
       // throw new Error("Username already exist.");
-      return { message: "Please enter your password."} 
+      return { message: "Please enter your password." };
     }
     await Users.insert({
       username,
@@ -179,9 +206,9 @@ export const ADD_PHQSCORE = {
     appropiatePHQSeverityScore: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const now = Date();
     const {
       appropiatePHQSeverity,
@@ -217,9 +244,9 @@ export const EDIT_PROFILE = {
     phoneNumber: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const { name, surname, email, phoneNumber } = args;
     // const user = await Users.findOne({ id: id });
     // const user = context.id;
