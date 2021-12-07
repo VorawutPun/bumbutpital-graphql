@@ -146,12 +146,12 @@ export const USER_REGISTER = {
       await transporter.sendMail({
         from: "Bumbutpital System <bumbutpital@gmail.com>",
         to: email,
-        subject: "[Bumbutpital] Username and Password ",
+        subject: "Your Bumbutpital application account ",
         html: `<table style="width:100%;background-color:#f1f1f1;padding-top:30px" cellpadding="10" cellspacing="0" border="0" align="center">
         <tbody>
          <tr>
           <td align="center">
-           <img src="https://firebasestorage.googleapis.com/v0/b/bumbutpital-fe811.appspot.com/o/video%2F08e24a82-7321-413d-aaf8-2f3d6d552911.jpg?alt=media&token=feace7ed-b9a5-486b-8165-c079b5d22931" alt="bumbutpital" style="padding-top:30px;width:100%;max-width:100px;" class="CToWUd"><h1>Bumbutpital</h1>
+           <h1>BUMBUTPITAL</h1>
           </td>
          </tr>
          <tr>
