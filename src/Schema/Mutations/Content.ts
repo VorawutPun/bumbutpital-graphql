@@ -16,14 +16,14 @@ export const CREATE_CONTENT = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    if(!args.title){
+    if (!args.title) {
       throw new Error("Please fill title.");
     }
-    const { contentID, title, description, pictureUrl, appropiatePHQSeverity} =
+    const { contentID, title, description, pictureUrl, appropiatePHQSeverity } =
       args;
     const now = Date();
     await Content.insert({
-      userId:context.userId,
+      userId: context.userId,
       contentID,
       title,
       description,
@@ -65,11 +65,10 @@ export const UPDATE_CONTENT = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const {contentID} = args;
+    const { contentID } = args;
     const now = Date();
-    console.log(args)
-    await Content.update({contentID},{updateTime: now, ...args});
+    console.log(args);
+    await Content.update({ contentID }, { updateTime: now, ...args });
     return args;
   },
 };
-
