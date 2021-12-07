@@ -7,7 +7,6 @@ export const CREATE_PROMOTION = {
   type: PromotionType,
   args: {
     hospitalId: { type: GraphQLString },
-    userId: { type: GraphQLString },
     createAt: { type: GraphQLString },
     title: { type: GraphQLString },
     hospitalDetail: { type: GraphQLString },
@@ -19,19 +18,12 @@ export const CREATE_PROMOTION = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const {
-      hospitalId,
-      userId,
-      title,
-      hospitalDetail,
-      couponCode,
-      Url,
-      expiredDate,
-    } = args;
+    const { hospitalId, title, hospitalDetail, couponCode, Url, expiredDate } =
+      args;
     const now = Date();
     await Promotion.insert({
       hospitalId,
-      userId,
+      userId: context.userId,
       createAt: now,
       title,
       hospitalDetail,
@@ -74,9 +66,9 @@ export const UPDATE_PROMOTION = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const {promotionId} = args;
-    console.log(args)
-    await Promotion.update({promotionId},{...args});
+    const { promotionId } = args;
+    console.log(args);
+    await Promotion.update({ promotionId }, { ...args });
     return args;
   },
 };
