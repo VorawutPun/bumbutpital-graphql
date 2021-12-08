@@ -58,7 +58,6 @@ export const UPDATE_PROMOTION = {
     userId: { type: GraphQLString },
     title: { type: GraphQLString },
     hospitalDetail: { type: GraphQLString },
-    couponCode: { type: GraphQLString },
     Url: { type: GraphQLString },
     expiredDate: { type: GraphQLString },
   },

@@ -71,7 +71,6 @@ export const TOTAL_PHQ9 = {
     }
     const countUser = await Users.count({where:{role: null}})
     const phq = await Users.createQueryBuilder().select("SUM(appropiatePHQSeverityScore)","sum").getRawOne();
-    console.log(phq.sum)
     return phq.sum/countUser
   }
 }
