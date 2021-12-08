@@ -30,9 +30,9 @@ export const GET_USER = {
     id: { type: GraphQLID },
   },
   async resolve(_: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const user = await Users.findByIds(args.id);
     if (user) {
       return user;

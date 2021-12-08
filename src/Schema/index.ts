@@ -22,7 +22,7 @@ import { CREATE_CONTENT, DELETE_CONTENT, UPDATE_CONTENT } from "./Mutations/Cont
 import { CREATE_Hospital, DELETE_Hospital, UPDATE_HOSPITAL } from "./Mutations/Hospital";
 import { CREATE_PROMOTION, DELETE_PROMOTION, UPDATE_PROMOTION,  } from "./Mutations/Promotion";
 import { CREATE_Video, DELETE_Video, UPDATE_VIDEO } from "./Mutations/Video";
-import { COUNT_FORUM, GET_ALL_FORUM, GET_CURENT_FORUM } from "./Queries/Forum";
+import { COUNT_FORUM, GET_ALL_FORUM, GET_CURENT_FORUM, GET_FORUM } from "./Queries/Forum";
 import { GET_VIDEO } from "./Queries/Video";
 import { ANSWER_FORUM, CREATE_FORUM } from "./Mutations/Forum";
 import { KeepPromotion } from "./Mutations/PromotionLog";
@@ -47,6 +47,7 @@ const RootQuery = new GraphQLObjectType({
     getVideo: GET_VIDEO,
     countVideo: COUNT_VIDEO,
     getAllForum: GET_ALL_FORUM,
+    getForum: GET_FORUM,
     countForum: COUNT_FORUM,
     getSmartContent: GET_SMART_CONTENT,
     getSmartVideo: GET_SMART_VIDEO,

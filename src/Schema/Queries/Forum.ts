@@ -1,4 +1,4 @@
-import { GraphQLInt, GraphQLList } from "graphql";
+import { GraphQLID, GraphQLInt, GraphQLList } from "graphql";
 import { Forum } from "../../Entities/Forum";
 import { Users } from "../../Entities/Users";
 import { ForumType } from "../TypeDefs/Forum";
@@ -20,6 +20,19 @@ export const GET_CURENT_FORUM = {
       throw new Error('Unauthenticated');
     }
     return Forum.find({where:{userID:context.userId}});
+  },
+};
+
+export const GET_FORUM = {
+  args: {
+    id: { type: GraphQLID },
+  },
+  type: new GraphQLList(ForumType),
+  resolve(_: any, args: any, context: any) {
+     if (!context.isAuth) {
+      throw new Error('Unauthenticated');
+    }
+    return Forum.find({where:{userID:args.id}});
   },
 };
 
