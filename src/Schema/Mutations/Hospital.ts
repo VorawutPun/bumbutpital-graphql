@@ -3,6 +3,7 @@ import { GraphQLID, GraphQLString } from "graphql";
 import { HospitalType } from "../TypeDefs/Hospital";
 import { MessageType } from "../TypeDefs/Messages";
 import { UserInputError } from "apollo-server-express";
+import { Promotion } from '../../Entities/Promotion';
 
 export const CREATE_Hospital = {
   type: HospitalType,
@@ -37,8 +38,11 @@ export const DELETE_Hospital = {
   },
   async resolve(parent: any, args: any) {
     const id = args.hospitalID;
+    const promotionList = await Promotion.find({where: {hospitalId: id}, select: ["promotionId"]})
+    for await (const promotion of promotionList) {
+      await Promotion.delete(promotion.promotionId)
+    }
     await Hospital.delete(id);
-
     return { successful: true, message: "DELETE WORKED" };
   },
 };
