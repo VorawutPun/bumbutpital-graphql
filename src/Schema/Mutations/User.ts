@@ -126,10 +126,12 @@ export const USER_REGISTER = {
     email: { type: GraphQLString },
     phoneNumber: { type: GraphQLString },
     role: { type: GraphQLString },
+    createAt: { type: GraphQLString },
   },
   async resolve(parent: any, args: any) {
+    const now = Date();
     const hashedPassword = await hash(args.password, 13);
-    const { username, password, name, surname, email, phoneNumber, role } =
+    const { username, password, name, surname, email, phoneNumber,role , createAt } = args;
       args;
     const staff = await Users.findOne({ username: username });
 
@@ -190,6 +192,7 @@ export const USER_REGISTER = {
       email,
       phoneNumber,
       role,
+      createAt: now
     });
     return args;
   },

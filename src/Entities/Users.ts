@@ -73,6 +73,7 @@ export class Users extends BaseEntity {
       iv: 'ff5ac19190424b1d88f9419ef949ae56'
     })
   })
+
   appropiatePHQSeverity!: string | undefined;
 
     @Column({
@@ -108,6 +109,9 @@ export class Users extends BaseEntity {
 
   @Column({ nullable: true })
   role!: string;
+
+  @Column()
+  createAt!: string;
   
 }
 
