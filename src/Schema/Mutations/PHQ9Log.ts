@@ -1,9 +1,6 @@
-import { GraphQLID, GraphQLString } from "graphql";
+import { GraphQLString } from "graphql";
 import { PHQ9Log } from "../../Entities/PHQ9Log";
 import { PHQ9LogType } from "../TypeDefs/PHQ9Log";
-import { AccessType, MessageType } from "../TypeDefs/Messages";
-
-
 
 export const ADD_PHQ9Log = {
   type: PHQ9LogType,
@@ -14,7 +11,7 @@ export const ADD_PHQ9Log = {
     date: { type: GraphQLString },
 
   },
-  async resolve(parent: any, args: any, context: any) {
+  async resolve(_: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }

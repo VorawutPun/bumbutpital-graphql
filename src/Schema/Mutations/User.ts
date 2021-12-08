@@ -4,7 +4,7 @@ import { AccessType, MessageType } from "../TypeDefs/Messages";
 import { Users } from "../../Entities/Users";
 import { sign } from "jsonwebtoken";
 import { PHQ9Log } from "../../Entities/PHQ9Log";
-import { PHQ9LogType } from "../TypeDefs/PHQ9Log";
+// import { PHQ9LogType } from "../TypeDefs/PHQ9Log";
 import { compare, hash } from "bcryptjs";
 import { MixType } from "../TypeDefs/Mix";
 
@@ -89,15 +89,7 @@ export const STAFF_LOGIN = {
   async resolve(parent: any, args: any) {
     const { username, password } = args;
     const staff = await Users.findOne({ username: username });
-    if (!staff?.username) {
-      return { message: "Please enter your username." };
-    }
-
-    if (!staff?.password) {
-      return { message: "Please enter your password." };
-    }
     if (!staff) {
-      // return { message: "Username doesn't exist."}
       throw new Error("Username does not exist!");
     }
 
@@ -251,8 +243,6 @@ export const EDIT_PROFILE = {
       throw new Error("Unauthenticated");
     }
     const { name, surname, email, phoneNumber } = args;
-    // const user = await Users.findOne({ id: id });
-    // const user = context.id;
     await Users.update(
       { id: context.userId },
       { name: name, surname: surname, email: email, phoneNumber: phoneNumber }
@@ -267,9 +257,9 @@ export const PermissionPHQ9 = {
     permissionPHQSeverity: { type: GraphQLString },
   },
   async resolve(parent: any, args: any, context: any) {
-    // if (!context.isAuth) {
-    //   throw new Error("Unauthenticated");
-    // }
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
     const { permissionPHQSeverity } = args;
     // const user = await Users.findOne({ id: id });
     // const user = context.id;

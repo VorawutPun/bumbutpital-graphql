@@ -28,21 +28,6 @@ export const CREATE_FORUM = {
   },
 };
 
-// export const ANSWER_FORUM = {
-//   type: ForumType,
-//   args: {
-//     forumID: { type: GraphQLID },
-//     answer: { type: GraphQLString },
-//   },
-//   async resolve(_: any, args: any, context: any) {
-//     if (!context.isAuth) {
-//       throw new Error("Unauthenticated");
-//     }
-//     const { forumID } = args;
-//     await Forum.update({ forumID }, { staffID: context.userId }, { ...args });
-//     return args
-//   },
-// };
 export const ANSWER_FORUM = {
   type: MessageType,
   args: {

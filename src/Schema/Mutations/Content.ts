@@ -41,7 +41,7 @@ export const DELETE_CONTENT = {
   args: {
     contentID: { type: GraphQLID },
   },
-  async resolve(parent: any, args: any, context: any) {
+  async resolve(_: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }

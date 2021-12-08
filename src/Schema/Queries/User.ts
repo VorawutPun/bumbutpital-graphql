@@ -7,8 +7,8 @@ import { OnlyUserName } from "../TypeDefs/OnlyUserName";
 export const GET_ALL_USERS = {
   type: new GraphQLList(UserType),
   resolve(_: any, __: any, context: any) {
-     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
     }
     return Users.find();
   },
@@ -45,10 +45,10 @@ export const GET_USER = {
 export const GET_CURENT_USER = {
   type: new GraphQLList(UserType),
   resolve(_: any, __: any, context: any) {
-     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
     }
-    return Users.find({where:{id:context.userId}});
+    return Users.find({ where: { id: context.userId } });
   },
 };
 
@@ -58,7 +58,7 @@ export const COUNT_USER = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const countUser = await Users.count({where:{role: "User"}})
-    return countUser
-  }
+    const countUser = await Users.count({ where: { role: "User" } });
+    return countUser;
+  },
 };

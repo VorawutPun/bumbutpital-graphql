@@ -101,7 +101,6 @@ export const GET_SMART_CONTENT_Mild_Depression = {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-
     return Content.find({
       where: { appropiatePHQSeverity: "Mild Depression" },
     });

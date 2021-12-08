@@ -7,8 +7,8 @@ import { PromotionLogType } from "../TypeDefs/PromotionLog";
 export const GET_ALL_PROMOTION = {
   type: new GraphQLList(PromotionType),
   resolve(_: any, __: any, context: any) {
-     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
     }
     return Promotion.find();
   },
@@ -23,20 +23,18 @@ export const GET_CURRENT_PROMOTION = {
     const user = (await PromotionLog.findOne({
       where: { userId: context.userId },
     })) as PromotionLog;
-    
+
     return Promotion.find({
-      where:{promotionId: user.keeppromotionId , }
-     
-      
-    },);
+      where: { promotionId: user.keeppromotionId },
+    });
   },
 };
 
 export const GET_PROMOTIONLOG = {
   type: new GraphQLList(PromotionLogType),
   resolve(_: any, __: any, context: any) {
-     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
     }
     return PromotionLog.find();
   },
@@ -59,5 +57,3 @@ export const GET_PROMOTION = {
     }
   },
 };
-
-

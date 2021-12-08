@@ -7,7 +7,7 @@ export const GET_ALL_FORUM = {
   type: new GraphQLList(ForumType),
   resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+      throw new Error("Unauthenticated");
     }
     return Forum.find();
   },
@@ -16,10 +16,10 @@ export const GET_ALL_FORUM = {
 export const GET_CURENT_FORUM = {
   type: new GraphQLList(ForumType),
   resolve(_: any, __: any, context: any) {
-     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
     }
-    return Forum.find({where:{userID:context.userId}});
+    return Forum.find({ where: { userID: context.userId } });
   },
 };
 
@@ -29,10 +29,10 @@ export const GET_FORUM = {
   },
   type: new GraphQLList(ForumType),
   resolve(_: any, args: any, context: any) {
-     if (!context.isAuth) {
-      throw new Error('Unauthenticated');
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
     }
-    return Forum.find({where:{userID:args.id}});
+    return Forum.find({ where: { userID: args.id } });
   },
 };
 
@@ -43,6 +43,6 @@ export const COUNT_FORUM = {
       throw new Error("Unauthenticated");
     }
     const countForum = await Forum.count();
-    return countForum
-  }
+    return countForum;
+  },
 };

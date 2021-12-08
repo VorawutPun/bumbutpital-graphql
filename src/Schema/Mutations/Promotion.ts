@@ -14,7 +14,7 @@ export const CREATE_PROMOTION = {
     Url: { type: GraphQLString },
     expiredDate: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any, context: any) {
+  async resolve(_: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
@@ -39,7 +39,7 @@ export const DELETE_PROMOTION = {
   args: {
     promotionId: { type: GraphQLID },
   },
-  async resolve(parent: any, args: any, context: any) {
+  async resolve(_: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
@@ -61,7 +61,7 @@ export const UPDATE_PROMOTION = {
     Url: { type: GraphQLString },
     expiredDate: { type: GraphQLString },
   },
-  async resolve(parent: any, args: any, context: any) {
+  async resolve(_: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }

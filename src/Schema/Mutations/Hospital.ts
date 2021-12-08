@@ -2,7 +2,6 @@ import { Hospital } from './../../Entities/Hospital';
 import { GraphQLID, GraphQLString } from "graphql";
 import { HospitalType } from "../TypeDefs/Hospital";
 import { MessageType } from "../TypeDefs/Messages";
-import { UserInputError } from "apollo-server-express";
 import { Promotion } from '../../Entities/Promotion';
 
 export const CREATE_Hospital = {
