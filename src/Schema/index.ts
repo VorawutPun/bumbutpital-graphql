@@ -1,5 +1,5 @@
 import { buildSchema, GraphQLObjectType, GraphQLSchema } from "graphql";
-import { COUNT_USER, GET_ALL_USERS, GET_CURENT_USER, GET_ONLY_USERNAME, GET_USER, TOTAL_PHQ9 } from "./Queries/User";
+import { COUNT_USER, GET_ALL_USERS, GET_CURENT_USER, GET_ONLY_USERNAME, GET_USER } from "./Queries/User";
 import {
   ADD_PHQSCORE,
   DELETE_USER,
@@ -36,7 +36,6 @@ const RootQuery = new GraphQLObjectType({
     getCurrentUser: GET_CURENT_USER,
     getUser: GET_USER,
     countUser: COUNT_USER,
-    totalPHQ9: TOTAL_PHQ9,
     getAllContent: GET_ALL_CONTENT,
     getContent: GET_CONTENT,
     countContent: COUNT_CONTENT,
