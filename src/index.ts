@@ -14,8 +14,6 @@ import { Forum } from "./Entities/Forum";
 import { PromotionLog } from "./Entities/PromotionLog";
 import { PHQ9Log } from "./Entities/PHQ9Log";
 
-
-
 const main = async () => {
   const loggingMiddleware = (
     req: Request,
@@ -48,15 +46,14 @@ const main = async () => {
     // host:"bumbut_database",
     type: "mysql",
     // database: "bumbut_database",
-    database:"graphql",
+    database:"bumbutpital",
     username: "root",
     // password: "root_punbewtae",
-    password:"",
+    password:"iFlame",
     logging: true,
     synchronize: true,
     entities: [Content, Users, Hospital, Promotion, Video, Forum , PromotionLog ,PHQ9Log ],
   });
-
 
   app.use(cors());
   app.use(loggingMiddleware as any)
