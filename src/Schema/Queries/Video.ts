@@ -1,51 +1,49 @@
 import { GraphQLID, GraphQLInt, GraphQLList } from "graphql";
-import { ContentType } from "../TypeDefs/Content";
-import { Content } from "../../Entities/Content";
+import { VideoType } from "../TypeDefs/Video";
+import { Video } from "../../Entities/Video";
 import { Users } from "../../Entities/Users";
-import { createQueryBuilder } from "typeorm";
 
-export const GET_ALL_CONTENT = {
-  type: new GraphQLList(ContentType),
+export const GET_ALL_Video = {
+  type: new GraphQLList(VideoType),
   resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    return Content.find();
+    return Video.find();
   },
 };
 
-export const GET_CONTENT = {
-  type: new GraphQLList(ContentType),
+export const GET_VIDEO = {
+  type: new GraphQLList(VideoType),
   args: {
-    contentID: { type: GraphQLID },
+    videoID: { type: GraphQLID },
   },
   async resolve(_: any, args: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const content = await Content.findByIds(args.contentID);
-    if (content) {
-      return content;
+    const video = await Video.findByIds(args.videoID);
+    if (video) {
+      return video;
     } else {
       throw new Error("Post not found");
     }
   },
 };
 
-export const COUNT_CONTENT = {
+export const COUNT_VIDEO = {
   type: GraphQLInt,
   async resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
-    const countContent = await Content.count();
-    return countContent
-  }
+    const countVideo = await Video.count();
+    return countVideo;
+  },
 };
 
-//Mobew
-export const GET_SMART_CONTENT = {
-  type: new GraphQLList(ContentType),
+export const GET_SMART_VIDEO_DEPRESSION = {
+  type: new GraphQLList(VideoType),
   async resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
@@ -53,103 +51,106 @@ export const GET_SMART_CONTENT = {
     const user = (await Users.findOne({
       where: { id: context.userId },
     })) as Users;
-    return Content.find({
+    return Video.find({
+      where: {
+        appropiatePHQSeverity: user.appropiatePHQSeverity,
+        VideoType: "Depression",
+      },
+    });
+  },
+};
+
+export const GET_SMART_VIDEO_HEALTH = {
+  type: new GraphQLList(VideoType),
+  async resolve(_: any, __: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const user = (await Users.findOne({
+      where: { id: context.userId },
+    })) as Users;
+    return Video.find({
+      where: {
+        appropiatePHQSeverity: user.appropiatePHQSeverity,
+        VideoType: "Health",
+      },
+    });
+  },
+};
+
+export const GET_SMART_VIDEO = {
+  type: new GraphQLList(VideoType),
+  async resolve(_: any, __: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+    const user = (await Users.findOne({
+      where: { id: context.userId },
+    })) as Users;
+    return Video.find({
       where: { appropiatePHQSeverity: user.appropiatePHQSeverity },
     });
   },
 };
 
-export const GET_SMART_CONTENT_HEALTH = {
-  type: new GraphQLList(ContentType),
-  async resolve(_: any, __: any, context: any) {
-    if (!context.isAuth) {
-      throw new Error("Unauthenticated");
-    }
-    const user = (await Users.findOne({
-      where: { id: context.userId },
-    })) as Users;
-    return Content.find({
-      where: {
-        appropiatePHQSeverity: user.appropiatePHQSeverity,
-        contenttype: "Health",
-      },
-    });
-  },
-};
-
-export const GET_SMART_CONTENT_DEPRESSION = {
-  type: new GraphQLList(ContentType),
-  async resolve(_: any, __: any, context: any) {
-    if (!context.isAuth) {
-      throw new Error("Unauthenticated");
-    }
-    const user = (await Users.findOne({
-      where: { id: context.userId },
-    })) as Users;
-    return Content.find({
-      where: {
-        appropiatePHQSeverity: user.appropiatePHQSeverity,
-        contenttype: "Depression",
-      },
-    });
-  },
-};
-
-export const GET_SMART_CONTENT_Mild_Depression = {
-  type: new GraphQLList(ContentType),
-  async resolve(_: any, __: any, context: any) {
-    if (!context.isAuth) {
-      throw new Error("Unauthenticated");
-    }
-    return Content.find({
-      where: { appropiatePHQSeverity: "Mild Depression" },
-    });
-  },
-};
-export const GET_SMART_CONTENT_Moderate_Depression = {
-  type: new GraphQLList(ContentType),
+export const GET_SMART_VIDEO_Mild_Depression = {
+  type: new GraphQLList(VideoType),
   async resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
 
-    return Content.find({
+    return Video.find({ where: { appropiatePHQSeverity: "Mild Depression" } });
+  },
+};
+
+export const GET_SMART_VIDEO_Moderate_Depression = {
+  type: new GraphQLList(VideoType),
+  async resolve(_: any, __: any, context: any) {
+    if (!context.isAuth) {
+      throw new Error("Unauthenticated");
+    }
+
+    return Video.find({
       where: { appropiatePHQSeverity: "Moderate Depression" },
     });
   },
 };
-export const GET_SMART_CONTENT_Moderately_severe_Depression = {
-  type: new GraphQLList(ContentType),
+
+export const GET_SMART_VIDEO_Moderately_severe_Depression = {
+  type: new GraphQLList(VideoType),
   async resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
 
-    return Content.find({
+    return Video.find({
       where: { appropiatePHQSeverity: "Moderately severe Depression" },
     });
   },
 };
-export const GET_SMART_CONTENT_Severe_Depression = {
-  type: new GraphQLList(ContentType),
+
+export const GET_SMART_VIDEO_Severe_Depression = {
+  type: new GraphQLList(VideoType),
   async resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
 
-    return Content.find({
+    return Video.find({
       where: { appropiatePHQSeverity: "Severe Depression" },
     });
   },
 };
-export const GET_SMART_CONTENT_Minimal_Depression = {
-  type: new GraphQLList(ContentType),
+
+export const GET_SMART_VIDEO_Minimal_Depression = {
+  type: new GraphQLList(VideoType),
   async resolve(_: any, __: any, context: any) {
     if (!context.isAuth) {
       throw new Error("Unauthenticated");
     }
 
-    return Content.find({
+    return Video.find({
       where: { appropiatePHQSeverity: "Minimal Depression" },
     });
   },

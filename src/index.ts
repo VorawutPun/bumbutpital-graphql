@@ -1,24 +1,62 @@
-import express from "express";
+import express, { Express, NextFunction } from "express";
+
 import { graphqlHTTP } from "express-graphql";
 import cors from "cors";
 import { createConnection } from "typeorm";
 import { schema } from "./Schema";
 import { Users } from "./Entities/Users";
 import { Content } from "./Entities/Content";
+import { verify } from "jsonwebtoken";
+import { Hospital } from "./Entities/Hospital";
+import { Promotion } from "./Entities/Promotion";
+import { Video } from "./Entities/Video";
+import { Forum } from "./Entities/Forum";
+import { PromotionLog } from "./Entities/PromotionLog";
+import { PHQ9Log } from "./Entities/PHQ9Log";
 
 const main = async () => {
+  const loggingMiddleware = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+  
+    const token = (req.headers as any)?.authorization?.split(" ")[1];
+
+    if (!token) {
+      (req as any).isAuth = false;
+      return next();
+    }
+
+    try {
+      const decoded = verify(token, "MySecretKey");
+      console.log(decoded);
+      (req as any).isAuth = true;
+      (req as any).userId = (decoded as any).userId;
+    } catch (err) {
+      (req as any).isAuth = false;
+    }
+     
+    return next();
+  };
+
+  const app: Express = express();
+
   await createConnection({
+    // host:"bumbut_database",
     type: "mysql",
-    database: "graphql",
+    // database: "bumbut_database",
+    database:"bumbutpital",
     username: "root",
-    password: "",
+    // password: "root_punbewtae",
+    password:"iFlame",
     logging: true,
-    synchronize: false,
-    entities: [Content],
+    synchronize: true,
+    entities: [Content, Users, Hospital, Promotion, Video, Forum , PromotionLog ,PHQ9Log ],
   });
 
-  const app = express();
   app.use(cors());
+  app.use(loggingMiddleware as any)
   app.use(express.json());
   app.use(
     "/graphql",

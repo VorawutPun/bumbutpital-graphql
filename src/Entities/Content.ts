@@ -1,17 +1,18 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Users } from "./Users";
 
 @Entity()
 export class Content extends BaseEntity {
   @PrimaryGeneratedColumn()
   contentID!: number;
 
-  @Column()
+  @Column("longtext")
   description!: string;
 
   @Column()
   updateTime!: string;
 
-  @Column()
+  @Column({length:5000})
   pictureUrl!: string;
 
   @Column()
@@ -23,5 +24,9 @@ export class Content extends BaseEntity {
   @Column()
   title!: string;
 
+  @ManyToOne(()=> Users, (user)=> user.content)
+  user!:Users;
 
+  @Column({nullable:true})
+  userId!: string;
 }

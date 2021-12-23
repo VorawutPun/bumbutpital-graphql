@@ -1,0 +1,31 @@
+version: '3'
+services:
+  bumbut_database:
+    image: mysql:5.7
+    container_name: bumbut_database
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: bumbutpital
+      MYSQL_DATABASE: bumbutpital
+
+    ports:
+      - 3306:3306
+    networks:
+    - app-network
+    volumes:
+      - ./db:/var/lib/mysql
+  # bumbut_nodejs:
+  #   depends_on:
+  #     - bumbut_database
+  #   build: .
+  #   container_name: bumbut_nodejs
+  #   networks:
+  #   - app-network
+  #   restart: unless-stopped
+  #   tty: true
+  #   ports:
+  #     - 3001:3001
+networks:
+  app-network:
+    driver: bridge
+  
